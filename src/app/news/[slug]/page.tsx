@@ -11,6 +11,7 @@ import {
 	VisitCTA,
 } from "@/components/ui";
 import { news } from "@/lib/content";
+export const dynamicParams = false;
 function getArticle(slug: string) {
 	const article = news.find((story) => story.slug === slug);
 	if (!article) notFound();

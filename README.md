@@ -9,7 +9,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. Node.js 20.9 or later is required by Next.js.
+Open http://localhost:3000. Use Node.js 22 or later for Next.js and Wrangler.
 
 ```sh
 npm run lint
@@ -60,6 +60,23 @@ Enquiry forms are deliberately browser-only. They use in-memory state, clear on 
 
 ## Deployment
 
-Deploy as a Next.js application with `npm run build` and `npm start`, or use a compatible Next.js host. Set `NEXT_PUBLIC_SITE_URL` to the deployed origin before building so Open Graph metadata uses the public URL. Without it, metadata defaults to `http://localhost:3000`. Images and fonts are local; no third-party font requests or image hotlinks are required.
+The site exports static HTML, client navigation payloads, JavaScript, CSS, images and fonts to `out/`. Cloudflare Workers Assets serves this directory using `wrangler.jsonc`; no Next.js server or Worker JavaScript entry point is required. All content routes are generated at build time, and unknown routes return the custom 404 page. The existing WebP images are served directly without a runtime image optimizer.
+
+Set `NEXT_PUBLIC_SITE_URL=https://kingsbridgecollege.corstack.dev` before building so Open Graph metadata uses the public URL. Without it, metadata defaults to `http://localhost:3000`.
+
+```sh
+npm run build
+npm start
+```
+
+`npm start` previews the exported site with Wrangler. Run the route/link check against the preview at `http://localhost:8787`.
+
+To publish from an authenticated Cloudflare environment:
+
+```sh
+npm run deploy
+```
+
+In Cloudflare Workers Builds, use `npm run build` as the build command and `npx wrangler deploy` as the deploy command. Select the `working` branch to deploy this fix. Keep the existing custom domain attached to the `kingsbridge` Worker. Deploy the contents of `out/`, not `.next/`; a Node.js `next start` build cannot run directly as a Cloudflare Worker.
 
 For a real school, replace illustrative content and dates with approved information, connect enquiry handling and email delivery, establish retention/consent rules, and review the policy copy before launch.

@@ -131,6 +131,7 @@ const stages = {
 	},
 };
 type StageKey = keyof typeof stages;
+export const dynamicParams = false;
 function getStage(key: string) {
 	if (!(key in stages)) notFound();
 	return stages[key as StageKey];
