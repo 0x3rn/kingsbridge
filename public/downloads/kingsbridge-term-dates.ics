@@ -1,0 +1,54 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kingsbridge Portfolio//Illustrative School Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:kb-first-term-2026@portfolio.example
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20261212
+SUMMARY:Fictional Kingsbridge - First term
+DESCRIPTION:Portfolio example only. Not a real school calendar.
+END:VEVENT
+BEGIN:VEVENT
+UID:kb-first-half-term-2026@portfolio.example
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261031
+SUMMARY:Fictional Kingsbridge - Half-term break
+DESCRIPTION:Portfolio example only. Not a real school calendar.
+END:VEVENT
+BEGIN:VEVENT
+UID:kb-second-term-2027@portfolio.example
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20270111
+DTEND;VALUE=DATE:20270327
+SUMMARY:Fictional Kingsbridge - Second term
+DESCRIPTION:Portfolio example only. Not a real school calendar.
+END:VEVENT
+BEGIN:VEVENT
+UID:kb-second-half-term-2027@portfolio.example
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270220
+SUMMARY:Fictional Kingsbridge - Half-term break
+DESCRIPTION:Portfolio example only. Not a real school calendar.
+END:VEVENT
+BEGIN:VEVENT
+UID:kb-third-term-2027@portfolio.example
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20270419
+DTEND;VALUE=DATE:20270717
+SUMMARY:Fictional Kingsbridge - Third term
+DESCRIPTION:Portfolio example only. Not a real school calendar.
+END:VEVENT
+BEGIN:VEVENT
+UID:kb-third-half-term-2027@portfolio.example
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20270531
+DTEND;VALUE=DATE:20270605
+SUMMARY:Fictional Kingsbridge - Half-term break
+DESCRIPTION:Portfolio example only. Not a real school calendar.
+END:VEVENT
+END:VCALENDAR
