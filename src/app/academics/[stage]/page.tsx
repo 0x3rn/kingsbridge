@@ -1,140 +1,142 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { FAQ } from "@/components/interactive";
+import { FAQ, SubjectExplorer } from "@/components/interactive";
+import { ButtonLink } from "@/components/ui";
 import {
-	ButtonLink,
-	Eyebrow,
-	PageHero,
-	SectionHeading,
-	TextLink,
-	VisitCTA,
-} from "@/components/ui";
-
+	Cards,
+	JumpLinks,
+	NextAction,
+	PageOpening,
+	Section,
+} from "@/components/page-sections";
 const stages = {
 	"junior-secondary": {
 		name: "Junior secondary",
-		years: "JSS1 — JSS3",
-		title: "A world to discover.",
+		years: "JSS1–JSS3",
+		title: "A confident start to secondary school",
 		description:
-			"New subjects. New friendships. New ways of thinking. A supportive first chapter in secondary school, with room to find your feet and your interests.",
+			"The junior years introduce new subjects and routines while strengthening English, mathematics and independent learning habits. Tutor contact and practical guidance help students settle into secondary school.",
 		image: "science",
+		entry: "/admissions#junior-entry",
+		introTitle: "Help with the move from primary school",
 		intro:
-			"The move from primary to secondary school is a big step. We make it a thoughtful one.",
-		body: "Junior secondary brings a broader timetable, specialist subjects and a growing expectation of independence. Clear routines, a familiar tutor and a balanced workload help students feel settled while learning to organise themselves. The aim is to make the new feel manageable, then exciting.",
+			"A broader timetable means more teachers, different classrooms and new responsibilities. The Kingsbridge model introduces routines for equipment, homework and asking for help, so students can build independence step by step.",
 		milestones: [
 			{
 				year: "JSS1",
-				title: "Settle in. Start exploring.",
-				text: "Build confidence with a new timetable, teachers and classmates. Lessons reinforce primary foundations while introducing the language and methods of secondary subjects. Tutor time helps students develop practical habits for homework, equipment and asking for help.",
+				title: "Settle into secondary school",
+				text: "Learn the timetable, meet subject teachers and strengthen primary foundations. Practise organising equipment, recording homework and asking questions.",
 			},
 			{
 				year: "JSS2",
-				title: "Make connections. Go further.",
-				text: "Students deepen their subject knowledge and begin to connect ideas across the curriculum. Group enquiries, practical investigations and presentations encourage more independent thinking. Feedback helps students recognise both strengths and areas that need deliberate practice.",
+				title: "Develop knowledge and independence",
+				text: "Build deeper understanding through investigations, group work and presentations. Use feedback to recognise strengths and improve weaker areas.",
 			},
 			{
 				year: "JSS3",
-				title: "Consolidate. Look ahead.",
-				text: "Bring the junior foundations together and prepare for the transition to senior study. Students practise examination routines, reflect on their interests and talk through subject options. Families and teachers work together to support a considered next step.",
+				title: "Prepare for senior study",
+				text: "Consolidate junior learning, practise examination routines and explore senior subjects with teachers and family.",
 			},
 		],
-		areas: [
+		prioritiesTitle: "What the junior years develop",
+		priorities: [
 			{
-				title: "Strong foundations",
-				text: "English, mathematics, basic science and technology provide the tools students need across the curriculum. Reading, vocabulary, reasoning and accurate communication are reinforced in every subject.",
+				title: "Core skills",
+				text: "Reading, writing, mathematical reasoning and basic scientific understanding.",
 			},
 			{
-				title: "A broad view",
-				text: "Social studies, civic learning, languages, business studies and creative and practical subjects encourage students to look beyond a single way of learning. They experience discussion, making, research and performance.",
+				title: "Broad interests",
+				text: "Languages, humanities, creative activities and practical learning.",
 			},
 			{
-				title: "Growing independence",
-				text: "Homework routines, guided research, reflective journals and manageable projects help students take ownership of their work. The focus is steady progress, rather than expecting independence before it has been taught.",
+				title: "Independent habits",
+				text: "Planning work, completing manageable tasks and reflecting on feedback.",
 			},
 		],
-		faqs: [
+		faq: [
 			{
-				question: "How do you help new students settle?",
+				question: "How are new students helped to settle?",
 				answer:
-					"An induction programme introduces the timetable, routines and people who can help. Tutor check-ins, peer connections and early communication with families make the first weeks easier to navigate. Students are shown how to organise equipment, record homework and ask a useful question.",
+					"Induction introduces the people, timetable and routines. Tutor check-ins and early family communication help identify questions in the first weeks.",
 			},
 			{
-				question: "How much homework should students expect?",
+				question: "What homework should students expect?",
 				answer:
-					"Homework is intended to revisit learning, practise a skill or prepare for a lesson. Junior students begin with manageable tasks and learn how to plan their time. A real school would share a year-specific homework guide at induction rather than relying on one fixed estimate for everyone.",
+					"Tasks revisit learning, practise skills or prepare for lessons. The model builds planning habits gradually. There is no published year-by-year homework schedule for this fictional school.",
 			},
 			{
-				question: "When do students choose senior subjects?",
+				question: "When are senior subjects discussed?",
 				answer:
-					"Conversations begin during JSS3, with opportunities to understand what senior subjects involve. School reports, interests and possible future routes inform a balanced choice made with families and subject teachers.",
+					"During JSS3, students review interests and progress and explore options with teachers and families.",
 			},
 		],
 	},
 	"senior-secondary": {
 		name: "Senior secondary",
-		years: "SS1 — SS3",
-		title: "A future to make your own.",
+		years: "SS1–SS3",
+		title: "Choose your subjects. Prepare for what comes next.",
 		description:
-			"Deeper learning. Thoughtful choices. The confidence to take your next step with a clearer sense of your strengths and possibilities.",
+			"Senior study develops deeper subject knowledge, more independent work and examination preparation. Guidance helps students plan a balanced programme and consider further education, vocational routes and career interests.",
 		image: "library",
+		entry: "/admissions#senior-entry",
+		introTitle: "A balanced programme with guidance",
 		intro:
-			"The senior years are a time to focus without closing down possibility.",
-		body: "Students build a coherent programme around core learning and subject choices. Teachers support more demanding work, practical applications and examination preparation, while tutors keep sight of wellbeing and the wider experience of growing up. Success means being prepared for an examination and for the decisions that follow it.",
+			"English and mathematics remain central to the concept curriculum. Other choices should reflect the student’s interests, progress, future plans and the requirements of the examination route. Teachers and families help students understand both the subjects and their workload.",
 		milestones: [
 			{
 				year: "SS1",
-				title: "Choose thoughtfully. Build depth.",
-				text: "Settle into a balanced combination of core and elective subjects. Students learn the expectations of senior study and develop stronger note-taking, research and independent practice. Early guidance helps identify the support needed for a sustainable workload.",
+				title: "Build a suitable subject programme",
+				text: "Understand senior expectations, establish stronger study habits and identify where support is needed.",
 			},
 			{
 				year: "SS2",
-				title: "Strengthen. Apply. Connect.",
-				text: "Extend subject understanding through practical work, projects and more demanding questions. Students explore further-study routes and career interests while developing the revision habits that will serve them in the final year.",
+				title: "Deepen learning and plan ahead",
+				text: "Apply knowledge through practical work and projects, strengthen revision habits and research routes after school.",
 			},
 			{
 				year: "SS3",
-				title: "Prepare well. Step forward.",
-				text: "Structured revision, practice papers and targeted feedback consolidate learning. Alongside examination preparation, students discuss applications, transition skills and responsible decision making. A clear plan helps make a demanding year purposeful and manageable.",
+				title: "Prepare for examinations and transition",
+				text: "Use practice papers and targeted feedback to guide revision, while preparing for the next stage of education.",
 			},
 		],
-		areas: [
+		prioritiesTitle: "Explore possible areas of focus",
+		priorities: [
 			{
-				title: "Science & technology",
-				text: "A pathway built around specialist sciences and mathematical thinking. Subject combinations might include biology, chemistry, physics, further mathematics or computing, depending on readiness and future interests.",
+				title: "Science and technology",
+				text: "Specialist sciences, mathematical thinking and computing.",
 			},
 			{
-				title: "Humanities & expression",
-				text: "A pathway for students interested in people, ideas, language and society. Literature, government, history, geography and languages develop interpretation, argument and a thoughtful understanding of the world.",
+				title: "Humanities and languages",
+				text: "People, society, literature, language and argument.",
 			},
 			{
-				title: "Business & enterprise",
-				text: "A pathway that explores resources, organisations and decisions. Economics, commerce, accounting and practical enterprise learning encourage students to connect analytical thinking with real-world problems.",
+				title: "Business and enterprise",
+				text: "Resources, organisations, economic choices and enterprise.",
 			},
 		],
-		faqs: [
+		faq: [
 			{
 				question: "Are pathways fixed packages?",
 				answer:
-					"No. The pathways are a useful starting point for a conversation. Final combinations should meet examination requirements, fit the timetable and balance a student’s strengths, interests and future plans. English and mathematics remain central.",
+					"No. They are a starting point for discussing a suitable combination of subjects.",
 			},
 			{
 				question: "How does examination preparation work?",
 				answer:
-					"Teachers build preparation into subject learning through regular retrieval practice, timed tasks, practical skills and feedback. In the final year, a coordinated revision plan and practice examinations help students identify priorities without relying on last-minute cramming.",
+					"Regular practice, timed tasks and feedback build preparation into lessons. A coordinated revision plan helps students identify priorities in the final year.",
 			},
 			{
-				question: "What support is there for life after secondary school?",
+				question: "What guidance is offered after secondary school?",
 				answer:
-					"Students explore further education, vocational routes and career possibilities. Guidance includes researching options, understanding entry requirements, preparing an application and discussing the practical skills needed for a new setting.",
+					"The model includes researching further education and vocational options, understanding entry requirements and preparing applications.",
 			},
 		],
 	},
 };
-type StageKey = keyof typeof stages;
 export const dynamicParams = false;
 function getStage(key: string) {
-	if (!(key in stages)) notFound();
-	return stages[key as StageKey];
+	if (!Object.hasOwn(stages, key)) notFound();
+	return stages[key as keyof typeof stages];
 }
 export function generateStaticParams() {
 	return Object.keys(stages).map((stage) => ({ stage }));
@@ -153,102 +155,97 @@ export default async function Stage({
 	params: Promise<{ stage: string }>;
 }) {
 	const stage = getStage((await params).stage);
+	const junior = stage.name === "Junior secondary";
 	return (
-		<main id="main">
-			<PageHero
-				eyebrow={stage.name}
-				title={
-					<>
-						{stage.title.split(".")[0]}
-						<em>.</em>
-					</>
-				}
-				description={stage.description}
+		<main id="main" className="decision-page">
+			<PageOpening
+				title={stage.title}
+				label={`${stage.name} · ${stage.years}`}
+				intro={stage.description}
 				image={stage.image}
-				alt={`Learning in ${stage.name.toLowerCase()} at Kingsbridge`}
 			>
-				<ButtonLink href="/admissions">Explore entry requirements</ButtonLink>
-			</PageHero>
-			<section className="section">
-				<div className="container split-layout">
-					<div>
-						<Eyebrow>{stage.years}</Eyebrow>
-						<h2>{stage.intro}</h2>
-					</div>
-					<div className="prose">
-						<p className="lead">{stage.body}</p>
-						<p>
-							Learning is balanced with sport, the arts, service and time with a
-							tutor. Students are encouraged to keep exploring interests outside
-							their main subjects, because a full education develops more than
-							one side of a person.
+				<div className="button-row">
+					<ButtonLink href={stage.entry}>
+						View {junior ? "junior" : "senior"} entry requirements
+					</ButtonLink>
+				</div>
+			</PageOpening>
+			<JumpLinks
+				links={[
+					{
+						label: junior ? "First weeks" : "Subject choices",
+						href: "#guidance",
+					},
+					{ label: "Year by year", href: "#years" },
+					{ label: "Subject areas", href: "#subjects" },
+					{ label: "Questions", href: "#questions" },
+				]}
+			/>
+			<Section id="guidance" title={stage.introTitle} intro={stage.intro}>
+				{junior ? (
+					<>
+						<h3 className="minor-heading">First weeks checklist</h3>
+						<ul className="practical-checklist">
+							<li>Learn the timetable and meet subject teachers.</li>
+							<li>Find the tutor and know how to ask for help.</li>
+							<li>Practise preparing equipment and recording homework.</li>
+							<li>Share early questions with family and tutor.</li>
+						</ul>
+					</>
+				) : (
+					<>
+						<h3 className="minor-heading">A guide to choosing subjects</h3>
+						<ol className="decision-steps">
+							{[
+								"Consider interests.",
+								"Review progress.",
+								"Check requirements.",
+								"Consider workload.",
+								"Discuss choices with teachers and family.",
+							].map((item) => (
+								<li key={item}>{item}</li>
+							))}
+						</ol>
+						<p className="demo-note">
+							Compulsory and elective combinations have not been confirmed for
+							this school concept.
 						</p>
-						<TextLink href="/academics#subjects">
-							Browse the subject areas
-						</TextLink>
-					</div>
+					</>
+				)}
+			</Section>
+			<Section id="years" title="Year by year" soft>
+				<div className="info-grid columns-3">
+					{stage.milestones.map((item) => (
+						<article className="editorial-card" key={item.year}>
+							<span className="stage-label">{item.year}</span>
+							<h3>{item.title}</h3>
+							<p>{item.text}</p>
+						</article>
+					))}
 				</div>
-			</section>
-			<section className="section soft-section">
-				<div className="container">
-					<SectionHeading
-						eyebrow="Year by year"
-						title={
-							<>
-								A journey with
-								<br />
-								<em>room to grow.</em>
-							</>
-						}
-					/>
-					<div className="three-grid">
-						{stage.milestones.map((item) => (
-							<article className="editorial-card" key={item.year}>
-								<span className="stage-label">{item.year}</span>
-								<h3>{item.title}</h3>
-								<p>{item.text}</p>
-							</article>
-						))}
-					</div>
-				</div>
-			</section>
-			<section className="section">
-				<div className="container">
-					<SectionHeading
-						eyebrow="The shape of learning"
-						title={
-							<>
-								Strong foundations.
-								<br />
-								<em>Meaningful connections.</em>
-							</>
-						}
-					/>
-					<div className="three-grid">
-						{stage.areas.map((area) => (
-							<article className="editorial-card" key={area.title}>
-								<h3>{area.title}</h3>
-								<p>{area.text}</p>
-							</article>
-						))}
-					</div>
-				</div>
-			</section>
-			<section className="section faq-section">
-				<div className="container faq-layout">
-					<div>
-						<Eyebrow>Good to know</Eyebrow>
-						<h2>
-							Your questions,
-							<br />
-							<em>considered.</em>
-						</h2>
-						<TextLink href="/academics">Back to learning</TextLink>
-					</div>
-					<FAQ items={stage.faqs} />
-				</div>
-			</section>
-			<VisitCTA />
+			</Section>
+			<Section title={stage.prioritiesTitle}>
+				<Cards items={stage.priorities} />
+				{!junior && (
+					<p className="demo-note">
+						These are illustrative areas of focus, not confirmed fixed subject
+						packages. Actual combinations would depend on the timetable and
+						examination requirements.
+					</p>
+				)}
+			</Section>
+			<Section
+				id="subjects"
+				title={`${stage.name} subject areas`}
+				intro="Broad areas in the illustrative curriculum, rather than a confirmed subject list for every class."
+				soft
+			>
+				<SubjectExplorer initialStage={junior ? "Junior" : "Senior"} />
+			</Section>
+			<Section id="questions" title={`${stage.name} questions`}>
+				<FAQ items={stage.faq} />
+			</Section>
+			<NextAction context="learning" />
 		</main>
 	);
 }

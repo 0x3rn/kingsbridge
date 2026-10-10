@@ -1,23 +1,16 @@
-import { ButtonLink, Eyebrow } from "@/components/ui";
+import { SiteSearchButton } from "@/components/header";
+import { ButtonLink } from "@/components/ui";
 export default function NotFound() {
 	return (
 		<main id="main" className="not-found container">
-			<Eyebrow>A little off the beaten path</Eyebrow>
-			<span className="error-number">404</span>
-			<h1>
-				Let’s find your
-				<br />
-				<em>next chapter.</em>
-			</h1>
+			<p className="eyebrow">404</p>
+			<h1>We couldn’t find that page</h1>
 			<p>
-				This page isn’t part of the Kingsbridge story. There’s plenty more to
-				discover from here.
+				The link may be out of date. Return to the homepage or search the site.
 			</p>
 			<div className="button-row">
-				<ButtonLink href="/">Return to the college</ButtonLink>
-				<ButtonLink href="/academics" variant="outline">
-					Explore learning
-				</ButtonLink>
+				<ButtonLink href="/">Go to homepage</ButtonLink>
+				<SiteSearchButton />
 			</div>
 		</main>
 	);

@@ -1,90 +1,55 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
-import { Eyebrow, Icon, PageHero, TextLink } from "@/components/ui";
+import { PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
-	title: "Get in touch",
+	title: "Enquiry demo",
 	description:
-		"Find the right conversation at Kingsbridge: admissions, learning, school life and family support.",
+		"Explore a local enquiry summary. No school inbox is contacted and no reply will be issued.",
 };
 export default function Contact() {
 	return (
-		<main id="main">
-			<PageHero
-				eyebrow="Get in touch"
-				title={
-					<>
-						Good conversations.
-						<br />
-						<em>Open doors.</em>
-					</>
-				}
-				description="Whether you’re exploring a place, curious about the curriculum or looking for practical information, start with the conversation that matters to you."
+		<main id="main" className="task-page">
+			<PageOpening
+				compact
+				title="Explore the enquiry form"
+				label="Enquiry demo"
+				intro="Choose a topic, write an example question and review a local summary. This portfolio website has no live school inbox and will not send your message."
 			/>
-			<section className="section">
-				<div className="container three-grid">
-					<article className="contact-card">
-						<Icon name="book" />
-						<h3>Considering Kingsbridge?</h3>
-						<p>
-							Explore entry points, assessments and the steps from an initial
-							enquiry to joining the school community.
-						</p>
-						<TextLink href="/admissions">Your admissions guide</TextLink>
-					</article>
-					<article className="contact-card">
-						<Icon name="calendar" />
-						<h3>Want a closer look?</h3>
-						<p>
-							A visit is a chance to see the learning spaces and ask the
-							questions a website cannot answer on its own.
-						</p>
-						<TextLink href="/visit">Plan a visit</TextLink>
-					</article>
-					<article className="contact-card">
-						<Icon name="leaf" />
-						<h3>Looking for family information?</h3>
-						<p>
-							Find the school-day rhythm, term calendar, uniform guidance and
-							our approach to communication.
-						</p>
-						<TextLink href="/parents">For our families</TextLink>
-					</article>
-				</div>
-			</section>
-			<section className="section soft-section">
-				<div className="container form-layout">
-					<aside className="form-sidebar">
-						<Eyebrow>Start a conversation</Eyebrow>
-						<h2>
-							What would you
-							<br />
-							like to <em>know?</em>
-						</h2>
-						<p>
-							Pick a topic, write your question and review the details. You can
-							download the resulting enquiry summary.
-						</p>
-						<div className="contact-info">
-							<Icon name="location" />
-							<div>
-								<strong>Imagined in Lagos, Nigeria</strong>
-								<p>
-									Kingsbridge is a portfolio concept with no real campus,
-									telephone number or admissions office.
-								</p>
-							</div>
-						</div>
-						<div className="demo-note">
-							<strong>A useful demo, not a live inbox</strong>
-							<p>
-								Use invented details. Your message is not sent anywhere, and no
-								response will be issued.
-							</p>
-						</div>
-					</aside>
-					<EnquiryForm mode="contact" />
-				</div>
-			</section>
+			<div className="container task-form-with-links">
+				<EnquiryForm mode="contact" />
+				<aside className="helpful-links">
+					<h2>Helpful information</h2>
+					{[
+						{
+							title: "Admissions information",
+							text: "Entry requirements, assessments and the illustrative joining process.",
+							href: "/admissions",
+							label: "View admissions",
+						},
+						{
+							title: "Visit information",
+							text: "Campus gallery and demo visit formats.",
+							href: "/visit",
+							label: "Explore visits",
+						},
+						{
+							title: "Parent information",
+							text: "Term dates, uniform, school timings and everyday guidance.",
+							href: "/parents",
+							label: "View parent information",
+						},
+					].map((item) => (
+						<article key={item.href}>
+							<h3>{item.title}</h3>
+							<p>{item.text}</p>
+							<Link className="text-link" href={item.href}>
+								{item.label}
+							</Link>
+						</article>
+					))}
+				</aside>
+			</div>
 		</main>
 	);
 }

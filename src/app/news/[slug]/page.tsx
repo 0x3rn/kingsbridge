@@ -2,14 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShareButton } from "@/components/interactive";
-import {
-	Eyebrow,
-	NewsCard,
-	Photo,
-	SectionHeading,
-	TextLink,
-	VisitCTA,
-} from "@/components/ui";
+import { NextAction, Section } from "@/components/page-sections";
+import { NewsCard, Photo, TextLink } from "@/components/ui";
 import { news } from "@/lib/content";
 export const dynamicParams = false;
 function getArticle(slug: string) {
@@ -35,23 +29,24 @@ export default async function Article({
 }) {
 	const article = getArticle((await params).slug);
 	return (
-		<main id="main">
+		<main id="main" className="reading-page">
 			<article>
 				<header className="article-header container">
 					<div className="breadcrumb">
 						<Link href="/">Home</Link>
 						<span>/</span>
-						<Link href="/news">Journal</Link>
+						<Link href="/news">News</Link>
 					</div>
-					<Eyebrow>{article.category}</Eyebrow>
+					<p className="eyebrow">{article.category}</p>
 					<h1>{article.title}</h1>
+					<p className="article-excerpt">{article.excerpt}</p>
 					<div className="article-meta">
 						<span>{article.date}</span>
 						<span>{article.reading}</span>
-						<span>From the Kingsbridge journal</span>
+						<span>Illustrative portfolio story</span>
 					</div>
 				</header>
-				<div className="container">
+				<figure className="container">
 					<Photo
 						name={article.image}
 						alt={article.alt}
@@ -59,7 +54,13 @@ export default async function Article({
 						eager
 						sizes="90vw"
 					/>
-				</div>
+					<figcaption>
+						{article.slug === "finding-your-voice"
+							? "Reading and discussion in an illustrative library setting."
+							: "Illustrative school activity."}{" "}
+						AI-generated image.
+					</figcaption>
+				</figure>
 				<div className="article-body">
 					<p className="article-intro">{article.intro}</p>
 					{article.sections.map((section) => (
@@ -70,37 +71,25 @@ export default async function Article({
 					))}
 					<div className="article-end">
 						<p className="small-copy">
-							An original editorial story written for the fictional Kingsbridge
+							An illustrative story written for the fictional Kingsbridge
 							College portfolio.
 						</p>
 						<ShareButton title={article.title} />
 					</div>
-					<TextLink href="/news">Back to the journal</TextLink>
+					<TextLink href="/news">Back to news</TextLink>
 				</div>
 			</article>
-			<section className="section soft-section">
-				<div className="container">
-					<SectionHeading
-						eyebrow="Keep exploring"
-						title={
-							<>
-								Another side of
-								<br />
-								<em>school life.</em>
-							</>
-						}
-					/>
-					<div className="news-grid">
-						{news
-							.filter((item) => item.slug !== article.slug)
-							.slice(0, 3)
-							.map((item) => (
-								<NewsCard key={item.slug} article={item} />
-							))}
-					</div>
+			<Section title="More school stories" soft>
+				<div className="news-grid">
+					{news
+						.filter((item) => item.slug !== article.slug)
+						.slice(0, 3)
+						.map((item) => (
+							<NewsCard key={item.slug} article={item} />
+						))}
 				</div>
-			</section>
-			<VisitCTA />
+			</Section>
+			<NextAction context="news" />
 		</main>
 	);
 }

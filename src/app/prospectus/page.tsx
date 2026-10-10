@@ -1,58 +1,72 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PrintButton } from "@/components/interactive";
-import { ButtonLink, Crest, Eyebrow, Photo } from "@/components/ui";
-import { dailySchedule, subjects, values } from "@/lib/content";
+import { Crest, Photo } from "@/components/ui";
+import {
+	dailySchedule,
+	documents,
+	entryRequirements,
+	subjects,
+	values,
+} from "@/lib/content";
 export const metadata: Metadata = {
-	title: "College prospectus",
+	title: "School guide",
 	description:
-		"A printable introduction to the learning, life and admissions experience at Kingsbridge College.",
+		"A printable guide to the fictional Kingsbridge school model, curriculum, school day and admissions.",
 };
 export default function Prospectus() {
 	return (
 		<main id="main" className="prospectus">
 			<div className="prospectus-toolbar container">
-				<span>A guide to Kingsbridge</span>
+				<span>School guide · Version 2 · 10 October 2026</span>
 				<PrintButton />
 			</div>
 			<header className="prospectus-cover container">
 				<div>
 					<Crest />
-					<Eyebrow>Kingsbridge College · Prospectus</Eyebrow>
-					<h1>
-						A place to learn.
-						<br />A life to <em>shape.</em>
-					</h1>
+					<p className="eyebrow">Kingsbridge College · School guide</p>
+					<h1>A guide to Kingsbridge College</h1>
+					<p>Junior and senior secondary · JSS1–SS3</p>
 					<p>
-						Junior & senior secondary
-						<br />
-						Curiosity · Character · Possibility
+						A fictional co-educational day school concept in Lagos, Nigeria.
 					</p>
+					<p className="small-copy">Version 2 · 10 October 2026</p>
 				</div>
-				<Photo
-					name="campus"
-					alt="Students walking through the Kingsbridge campus"
-					eager
-				/>
+				<figure>
+					<Photo
+						name="campus"
+						alt="AI-generated illustration of a fictional school campus."
+						eager
+					/>
+					<figcaption>
+						Illustrative campus concept · AI-generated image
+					</figcaption>
+				</figure>
 			</header>
 			<div className="prospectus-body">
-				<section>
-					<span className="eyebrow">01 · Welcome</span>
-					<h2>An education with a wider view.</h2>
-					<p className="lead">
-						Kingsbridge is imagined as a co-educational day school where strong
-						academic foundations and a genuine sense of belonging come together.
-					</p>
+				<nav className="guide-contents" aria-label="Guide contents">
+					<h2>Contents</h2>
+					<ol>
+						{[
+							["The school model", "model"],
+							["Curriculum and year groups", "curriculum"],
+							["A school day", "school-day"],
+							["Admissions model", "admissions-model"],
+							["About this project", "project"],
+						].map(([label, id]) => (
+							<li key={id}>
+								<Link href={`#${id}`}>{label}</Link>
+							</li>
+						))}
+					</ol>
+				</nav>
+				<section id="model">
+					<p className="eyebrow">01 · The school model</p>
+					<h2>The school model</h2>
 					<p>
-						Our six-year secondary journey gives young people room to develop
-						their interests, practise independence and become thoughtful members
-						of a community. We value examination preparation alongside
-						curiosity, creativity and the confidence to ask a good question.
-					</p>
-					<p>
-						Teachers make learning goals clear and give feedback students can
-						act on. Tutors provide a familiar point of contact, and regular
-						family conversations help connect learning with the wider experience
-						of growing up.
+						Kingsbridge is imagined as a day school that combines subject
+						learning, personal support and activities beyond lessons. Its
+						six-year structure runs from junior to senior secondary.
 					</p>
 					{values.map((value) => (
 						<div key={value.title} className="prospectus-value">
@@ -61,116 +75,111 @@ export default function Prospectus() {
 						</div>
 					))}
 				</section>
-				<section>
-					<span className="eyebrow">02 · The learning journey</span>
-					<h2>Broad beginnings. Thoughtful choices.</h2>
-					<h3>Junior secondary · JSS1–JSS3</h3>
+				<section id="curriculum">
+					<p className="eyebrow">02 · Curriculum and year groups</p>
+					<h2>Curriculum and year groups</h2>
 					<p>
-						The junior years reinforce literacy, numeracy and practical learning
-						habits while opening up a wider curriculum. Students experience
-						science and technology, languages, humanities and creative and
-						practical subjects before choosing a more focused senior programme.
+						JSS1–JSS3 builds broad foundations and routines for independent
+						work. SS1–SS3 develops more focused subject study and examination
+						preparation. The curriculum areas are illustrative, not a confirmed
+						operational subject list.
 					</p>
-					<h3>Senior secondary · SS1–SS3</h3>
+					<h3>Junior secondary</h3>
 					<p>
-						Core English and mathematics sit alongside a balanced set of subject
-						choices. Science, humanities and business-oriented pathways help
-						organise the conversation, while individual combinations reflect
-						interests, readiness and future possibilities. Structured revision
-						and practice support school-leaving examination preparation.
+						The junior years introduce new subjects while strengthening English,
+						mathematics and learning habits. Students develop routines for
+						equipment, homework and asking for help.
 					</p>
-					<h3>Curriculum areas</h3>
-					<div className="prospectus-subjects">
+					<h3>Senior secondary</h3>
+					<p>
+						The senior years develop deeper subject knowledge, a balanced
+						programme and examination preparation. Guidance supports choices
+						about further education, vocational routes and career interests.
+					</p>
+					<h3>Illustrative subject areas</h3>
+					<dl className="guide-subjects">
 						{subjects.map((subject) => (
-							<span key={subject.name}>{subject.name}</span>
+							<div key={subject.name}>
+								<dt>
+									{subject.name} ·{" "}
+									{subject.stage === "Both"
+										? "Junior and senior"
+										: subject.stage}
+								</dt>
+								<dd>{subject.detail}</dd>
+							</div>
 						))}
-					</div>
-					<p>
-						Assessment combines classwork, practical tasks, quizzes, writing and
-						examinations. Reports describe progress and next steps; support and
-						extension help students move forward from their own starting points.
-					</p>
+					</dl>
+					<Link className="text-link no-print" href="/academics">
+						Explore academics
+					</Link>
 				</section>
-				<section>
-					<span className="eyebrow">03 · Life at Kingsbridge</span>
-					<h2>Space for every side of you.</h2>
+				<section id="school-day">
+					<p className="eyebrow">03 · A school day</p>
+					<h2>A school day</h2>
 					<p>
-						Sport, the arts, debate, coding, environmental projects and service
-						give students a wider experience of learning. House activities
-						connect different year groups and create opportunities to
-						contribute, encourage and lead.
+						The model includes lessons, tutor contact, breaks, lunch and
+						enrichment, with arrival from 07:45 and collection at 15:30.
+						Selected activities continue until 16:30. All timings are examples.
 					</p>
-					<p>
-						Pastoral care begins with daily tutor contact and clear routines.
-						Students learn how to ask for support, treat others respectfully and
-						navigate the practical responsibilities of school life.
-					</p>
-					<h3>A typical school day</h3>
 					{dailySchedule.map((item) => (
 						<div className="prospectus-day" key={item.time}>
 							<strong>{item.time}</strong>
 							<div>
-								<h4>{item.title}</h4>
+								<h3>{item.title}</h3>
 								<p>{item.text}</p>
 							</div>
 						</div>
 					))}
+					<h3>Activities and support</h3>
+					<p>
+						Sport, arts, debate, coding and practical projects offer different
+						ways to explore interests. Tutor contact provides a familiar point
+						of support for routines, learning and wellbeing.
+					</p>
+					<Link className="text-link no-print" href="/parents">
+						Parent information and example term dates
+					</Link>
 				</section>
-				<section>
-					<span className="eyebrow">04 · Joining the college</span>
-					<h2>A thoughtful first step.</h2>
+				<section id="admissions-model">
+					<p className="eyebrow">04 · Admissions model</p>
+					<h2>Admissions model</h2>
 					<p>
-						The model admissions journey starts with an enquiry and a visit,
-						followed by a completed application, school records and an
-						age-appropriate assessment. A student conversation helps understand
-						interests, readiness and any support needs.
+						The illustrative journey includes enquiry, visit, application and
+						assessment, and written joining information if a place is offered.
+						This website does not carry out live admissions.
 					</p>
-					<h3>Junior entry</h3>
-					<p>
-						JSS1 applicants should have completed primary education and are
-						usually around 10–11 at the start of the academic year. English,
-						mathematics and reasoning tasks help establish a secure starting
-						point.
-					</p>
-					<h3>Senior entry and transfers</h3>
-					<p>
-						SS1 applicants should have completed junior secondary education or
-						an equivalent programme. English, mathematics and subject
-						discussions inform placement. Transfers into other years depend on
-						space and curriculum compatibility; final-year entry requires
-						individual review.
-					</p>
-					<h3>Documents to prepare</h3>
+					{entryRequirements.map((entry) => (
+						<div className="guide-entry" key={entry.title}>
+							<h3>{entry.title}</h3>
+							<p>{entry.text}</p>
+						</div>
+					))}
+					<h3>Documents a family would prepare</h3>
 					<ul>
-						<li>
-							Completed application and parent or guardian contact details
-						</li>
-						<li>Birth or age record and a recent passport photograph</li>
-						<li>Recent school reports and relevant completion records</li>
-						<li>Transfer letter and support information, where applicable</li>
+						{documents.map((document) => (
+							<li key={document}>{document}</li>
+						))}
 					</ul>
 					<p>
-						A real school would provide written fee terms, joining arrangements
-						and induction information before a family accepts a place.
+						This demo does not collect those documents. There is no actual fee
+						schedule or payment service.
 					</p>
-					<div className="button-row no-print">
-						<ButtonLink href="/admissions">
-							Read the admissions guide
-						</ButtonLink>
-						<ButtonLink href="/visit" variant="outline">
-							Explore a visit
-						</ButtonLink>
-					</div>
+					<Link className="text-link no-print" href="/admissions">
+						View admissions information
+					</Link>
 				</section>
-				<section className="prospectus-disclosure">
-					<span className="eyebrow">About this guide</span>
-					<h3>A fictional school. A complete idea.</h3>
+				<section id="project" className="prospectus-disclosure">
+					<p className="eyebrow">05 · About this project</p>
+					<h2>About this project</h2>
 					<p>
-						This prospectus is part of an original portfolio project.
-						Kingsbridge College is not an operating school; the content and
-						AI-generated campus imagery are illustrative. Website forms create
-						local demo summaries only and do not send applications, book visits
-						or collect payments.
+						Kingsbridge is not an operating school. Images, stories, dates and
+						school arrangements are illustrative. Demo forms create local
+						summaries and do not send messages, book visits or collect payments.
+					</p>
+					<p className="small-copy">
+						Guide version 2 · Reviewed 10 October 2026 ·
+						kingsbridgecollege.corstack.dev
 					</p>
 				</section>
 			</div>

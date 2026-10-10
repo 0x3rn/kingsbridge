@@ -1,193 +1,91 @@
 import type { Metadata } from "next";
 import { SubjectExplorer } from "@/components/interactive";
+import { ButtonLink } from "@/components/ui";
 import {
-	ButtonLink,
-	Eyebrow,
-	Icon,
-	PageHero,
-	Photo,
-	SectionHeading,
-	TextLink,
-	VisitCTA,
-} from "@/components/ui";
+	Cards,
+	JumpLinks,
+	NextAction,
+	PageOpening,
+	Section,
+	StageCards,
+} from "@/components/page-sections";
 export const metadata: Metadata = {
-	title: "Learning at Kingsbridge",
+	title: "Academics",
 	description:
-		"Explore a balanced secondary curriculum, subject pathways, practical learning and thoughtful assessment.",
+		"Explore the illustrative JSS1–SS3 curriculum, subjects, teaching, assessment and support.",
 };
 export default function Academics() {
 	return (
 		<main id="main">
-			<PageHero
-				eyebrow="Learning at Kingsbridge"
-				title={
-					<>
-						Learn to think.
-						<br />
-						Find your <em>direction.</em>
-					</>
-				}
-				description="A strong education gives you knowledge. A lasting one teaches you what to do with it. Our curriculum brings the two together."
+			<PageOpening
+				title="A clear path through secondary learning"
+				label="Academics"
 				image="science"
-				alt="A group of students learning through an investigation"
+				intro="Explore the Kingsbridge model curriculum from JSS1 to SS3: broad foundations in junior secondary, more focused subject choices in senior secondary, and regular feedback throughout."
 			>
-				<ButtonLink href="#subjects">Explore the curriculum</ButtonLink>
-			</PageHero>
-			<section className="section">
-				<div className="container split-layout">
-					<div>
-						<Eyebrow>Broad foundations. Deeper understanding.</Eyebrow>
-						<h2>
-							Learning for exams.
-							<br />
-							<em>Learning for life.</em>
-						</h2>
-					</div>
-					<div className="prose">
-						<p className="lead">
-							Our model curriculum follows a familiar Nigerian secondary
-							structure: three years of junior secondary education, followed by
-							three years of senior secondary study.
-						</p>
-						<p>
-							English and mathematics provide core foundations. Sciences,
-							humanities, languages and practical subjects give students a broad
-							view of the world and a chance to discover where their interests
-							lie.
-						</p>
-						<p>
-							As students move into senior school, subject choices become more
-							focused. Science, humanities and business-oriented pathways sit
-							alongside essential core learning, with guidance to build a
-							balanced programme. Senior study develops the knowledge and
-							examination habits associated with common school-leaving routes
-							such as WAEC and NECO; this fictional college makes no
-							accreditation claims.
-						</p>
-					</div>
+				<div className="button-row">
+					<ButtonLink href="#subjects">Browse subject areas</ButtonLink>
 				</div>
-			</section>
-			<section className="section soft-section">
-				<div className="container">
-					<SectionHeading
-						eyebrow="One journey. Two stages."
-						title={
-							<>
-								Start with discovery.
-								<br />
-								<em>Grow into direction.</em>
-							</>
-						}
-					/>
-					<div className="stage-grid">
-						<article className="stage-panel">
-							<span className="stage-label">JSS1 — JSS3</span>
-							<h3>Junior secondary</h3>
-							<p>
-								A broad introduction to new subjects, secure learning routines
-								and increasing independence. Students explore before they
-								specialise.
-							</p>
-							<ul>
-								<li>Core literacy and numeracy</li>
-								<li>Integrated science and technology</li>
-								<li>Creative, practical and social learning</li>
-								<li>Guidance through the transition from primary school</li>
-							</ul>
-							<TextLink href="/academics/junior-secondary">
-								Discover junior school
-							</TextLink>
-						</article>
-						<article className="stage-panel stage-panel-dark">
-							<span className="stage-label">SS1 — SS3</span>
-							<h3>Senior secondary</h3>
-							<p>
-								More focused subject study, deeper understanding and thoughtful
-								preparation for examinations and future education.
-							</p>
-							<ul>
-								<li>Core English and mathematics</li>
-								<li>Balanced subject combinations</li>
-								<li>Practical work and structured revision</li>
-								<li>Careers and further-study conversations</li>
-							</ul>
-							<TextLink light href="/academics/senior-secondary">
-								Discover senior school
-							</TextLink>
-						</article>
-					</div>
-				</div>
-			</section>
-			<section className="section" id="subjects">
-				<div className="container">
-					<SectionHeading
-						eyebrow="Explore the curriculum"
-						title={
-							<>
-								A wider world
-								<br />
-								of <em>ideas.</em>
-							</>
-						}
-						text="Browse the subject areas that make up the Kingsbridge concept. Specific senior combinations are planned with students and families."
-					/>
-					<SubjectExplorer />
-				</div>
-			</section>
-			<section className="section soft-section">
-				<div className="container split-layout">
-					<Photo
-						name="library"
-						alt="Students discussing and writing about their learning"
-						className="tall-photo"
-					/>
-					<div className="prose">
-						<Eyebrow>How learning becomes understanding</Eyebrow>
-						<h2>
-							Explain. Explore.
-							<br />
-							<em>Apply. Reflect.</em>
-						</h2>
-						<p>
-							Good teaching makes difficult ideas approachable without making
-							them less ambitious. Lessons move between clear explanation,
-							guided practice, discussion and opportunities to apply an idea
-							independently.
-						</p>
-						<p>
-							We use regular, low-pressure checks to see what students
-							understand. Classwork, quizzes, practical tasks and longer pieces
-							of writing build a fuller picture than a single examination.
-							Feedback focuses on what has improved and what to work on next.
-						</p>
-						<p>
-							Termly reports and family meetings bring that picture together.
-							Where a student needs additional support, teachers adapt practice
-							and agree manageable goals. Where a student is ready to go
-							further, extension tasks open up another level of thinking.
-						</p>
-						<ul className="check-list">
-							<li>
-								<Icon name="check" />
-								Clear learning goals
-							</li>
-							<li>
-								<Icon name="check" />
-								Practice that builds independence
-							</li>
-							<li>
-								<Icon name="check" />
-								Feedback students can act on
-							</li>
-							<li>
-								<Icon name="check" />
-								Progress shared with families
-							</li>
-						</ul>
-					</div>
-				</div>
-			</section>
-			<VisitCTA />
+			</PageOpening>
+			<JumpLinks
+				links={[
+					{ label: "Education stages", href: "#stages" },
+					{ label: "Subject areas", href: "#subjects" },
+					{ label: "Teaching and support", href: "#teaching" },
+				]}
+			/>
+			<Section
+				id="stages"
+				title="How the curriculum develops"
+				intro="The model follows a six-year Nigerian secondary-school structure: three junior years and three senior years. English and mathematics provide foundations across both stages. Science, languages, humanities and practical learning broaden the programme."
+			>
+				<p className="reading-width section-intro">
+					Senior students plan a balanced combination of subjects with guidance
+					from teachers and families. The concept includes examination
+					preparation associated with routes such as WAEC and NECO; it does not
+					claim accreditation or actual examination provision.
+				</p>
+				<StageCards />
+			</Section>
+			<Section
+				id="subjects"
+				title="Explore the subject areas"
+				intro="Filter the illustrative curriculum by stage or subject area. These are broad areas in the school concept, rather than a confirmed examination subject list."
+				soft
+			>
+				<p className="demo-note">
+					There are 12 subject areas, not necessarily 12 individual examination
+					subjects. Stage labels describe the broad model; they do not confirm
+					every named subject at every class level. Exact compulsory subjects,
+					electives, languages and examination combinations are not established
+					for this fictional school.
+				</p>
+				<SubjectExplorer />
+			</Section>
+			<Section id="teaching" title="How students learn and see their progress">
+				<Cards
+					columns={4}
+					items={[
+						{
+							title: "Teaching",
+							text: "Clear explanations, guided practice and opportunities to work independently.",
+						},
+						{
+							title: "Assessment",
+							text: "Classwork, quizzes, practical tasks, writing and examinations help teachers check understanding.",
+						},
+						{
+							title: "Feedback",
+							text: "Students learn what has improved and what to practise next.",
+						},
+						{
+							title: "Support",
+							text: "Additional practice or extension tasks respond to a student’s needs. Termly reports and family meetings share progress.",
+						},
+					]}
+				/>
+			</Section>
+			<NextAction context="learning" />
 		</main>
 	);
 }

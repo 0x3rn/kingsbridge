@@ -19,21 +19,27 @@ const serif = localFont({
 });
 export const metadata: Metadata = {
 	metadataBase: new URL(
-		process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+		process.env.NEXT_PUBLIC_SITE_URL ||
+			"https://kingsbridgecollege.corstack.dev",
 	),
 	title: {
-		default: "Kingsbridge College | A place to learn. A life to shape.",
+		default: "Kingsbridge College | Junior and senior secondary school concept",
 		template: "%s | Kingsbridge College",
 	},
 	description:
 		"Discover Kingsbridge College, a fictional secondary school where curiosity, character and possibility come together. Explore learning, school life and admissions.",
 	openGraph: {
 		title: "Kingsbridge College",
-		description: "An education that opens minds. A community that opens doors.",
+		description:
+			"A fictional co-educational day school concept in Lagos for JSS1–SS3.",
 		type: "website",
 		images: [
 			{
-				url: "/images/campus.webp",
+				url: new URL(
+					"/images/campus.webp",
+					process.env.NEXT_PUBLIC_SITE_URL ||
+						"https://kingsbridgecollege.corstack.dev",
+				).href,
 				width: 1659,
 				height: 948,
 				alt: "A glimpse of Kingsbridge College",

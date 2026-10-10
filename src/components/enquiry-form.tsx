@@ -1,9 +1,7 @@
 "use client";
-
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "./ui";
-
 type Mode = "application" | "visit" | "contact";
 type Details = {
 	parent: string;
@@ -17,6 +15,7 @@ type Details = {
 	message: string;
 	consent: boolean;
 };
+type Errors = Partial<Record<keyof Details, string>>;
 const emptyDetails: Details = {
 	parent: "",
 	email: "",
@@ -34,62 +33,123 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 	const [step, setStep] = useState(0);
 	const [ready, setReady] = useState(false);
 	const [visited, setVisited] = useState(false);
+	const [errors, setErrors] = useState<Errors>({});
+	const [validationAttempt, setValidationAttempt] = useState(0);
 	const heading = useRef<HTMLHeadingElement>(null);
+	const form = useRef<HTMLFormElement>(null);
 	const steps =
 		mode === "contact"
-			? ["Your enquiry", "Review details"]
+			? ["Your example enquiry", "Review enquiry"]
 			: [
-					"Your family",
-					mode === "visit" ? "Your visit" : "The student",
+					mode === "visit" ? "Family details" : "Parent or guardian details",
+					mode === "visit" ? "Visit preferences" : "Student and entry class",
 					"Review details",
 				];
 	const lastStep = steps.length - 1;
-	function update(field: keyof Details, value: string | boolean) {
-		setDetails((previous) => ({ ...previous, [field]: value }));
-	}
-	// biome-ignore lint/correctness/useExhaustiveDependencies: Focus follows changes to the rendered step and completion view.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Focus follows navigation and completion, not typing.
 	useEffect(() => {
 		if (visited) heading.current?.focus();
 	}, [step, ready, visited]);
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Focus invalid fields only on submission, not while correcting them.
+	useEffect(() => {
+		if (Object.keys(errors).length)
+			form.current
+				?.querySelector<HTMLElement>('[aria-invalid="true"]')
+				?.focus();
+	}, [validationAttempt]);
+	function update(field: keyof Details, value: string | boolean) {
+		setDetails((previous) => ({ ...previous, [field]: value }));
+		if (errors[field])
+			setErrors((previous) => {
+				const next = { ...previous };
+				delete next[field];
+				return next;
+			});
+	}
+	function navigate(next: number) {
+		setErrors({});
+		setVisited(true);
+		setStep(next);
+	}
+	function validate() {
+		const next: Errors = {};
+		if (step === 0) {
+			if (!details.parent.trim())
+				next.parent = "Enter an example parent or guardian name.";
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(details.email))
+				next.email =
+					"Enter a valid example email address, such as parent@example.com.";
+			if (mode === "contact" && !details.message.trim())
+				next.message = "Add an example question or message.";
+		} else if (step !== lastStep && !details.student.trim())
+			next.student = "Enter an example student first name.";
+		if (step === lastStep && !details.consent)
+			next.consent = "Confirm that you understand this is a demo.";
+		setErrors(next);
+		if (Object.keys(next).length)
+			setValidationAttempt((previous) => previous + 1);
+		return Object.keys(next).length === 0;
+	}
+	// Omit form names so a native submission cannot serialize demo details before hydration.
+	function inputProps(field: keyof Details) {
+		return {
+			id: `${mode}-${field}`,
+			"aria-invalid": errors[field] ? true : undefined,
+			"aria-describedby": errors[field] ? `${mode}-${field}-error` : undefined,
+		};
+	}
+	function error(field: keyof Details) {
+		return errors[field] ? (
+			<span className="field-error" id={`${mode}-${field}-error`}>
+				{errors[field]}
+			</span>
+		) : null;
+	}
 	function download() {
-		const text = `KINGSBRIDGE COLLEGE — PORTFOLIO DEMO\n${mode.toUpperCase()} ENQUIRY SUMMARY\n\nNot submitted. This is an illustrative document, not an application or visit confirmation.\n\nParent / guardian: ${details.parent}\nEmail: ${details.email}\nPhone: ${details.phone || "Not provided"}\n${mode !== "contact" ? `Student first name: ${details.student}\nEntry year: ${details.year}\nCurrent school: ${details.current || "Not provided"}\n` : `Topic: ${details.topic}\n`}${mode === "visit" ? `Visit preference: ${details.visit}\n` : ""}\nNotes: ${details.message || "None"}\n\nNo information has been sent or stored by a server.\n`;
+		const text = `KINGSBRIDGE COLLEGE — PORTFOLIO DEMO\n${mode.toUpperCase()} ENQUIRY SUMMARY\n\nNo application or message was sent. No visit was booked or place reserved.\n\nParent / guardian: ${details.parent}\nEmail: ${details.email}\nPhone: ${details.phone || "Not provided"}\n${mode !== "contact" ? `Student first name: ${details.student}\nEntry class: ${details.year}\n` : `Topic: ${details.topic}\n`}${mode === "application" ? `Current school: ${details.current || "Not provided"}\n` : ""}${mode === "visit" ? `Visit preference: ${details.visit}\n` : ""}\nNotes: ${details.message || "None"}\n\nThis file is saved only on your device.\n`;
 		const url = URL.createObjectURL(
 			new Blob([text], { type: "text/plain;charset=utf-8" }),
 		);
 		const anchor = document.createElement("a");
 		anchor.href = url;
-		anchor.download = `kingsbridge-${mode}-enquiry.txt`;
+		anchor.download = `kingsbridge-${mode}-demo-summary.txt`;
 		anchor.click();
 		setTimeout(() => URL.revokeObjectURL(url), 1000);
 	}
+	const completionTitle =
+		mode === "visit"
+			? "Your demo visit summary is ready"
+			: mode === "contact"
+				? "Your demo enquiry summary is ready"
+				: "Your demo summary is ready";
 	if (ready)
 		return (
 			<div className="enquiry-form form-success">
 				<span className="success-icon">
 					<Icon name="check" />
 				</span>
-				<p className="eyebrow">All set to review</p>
 				<h2 ref={heading} tabIndex={-1}>
-					Your demo enquiry is ready.
+					{completionTitle}
 				</h2>
 				<p>
-					You’ve completed the {mode === "application" ? "admissions" : mode}{" "}
-					experience. Download a copy of your details to see how an enquiry
-					summary would look.
+					{mode === "visit"
+						? "This summary was created in your browser. No appointment has been booked."
+						: mode === "contact"
+							? "Your message has not been sent and no reply will be issued."
+							: "This summary was created in your browser. No school has received it and no place has been reserved."}
 				</p>
-				<div className="demo-note">
-					<strong>Nothing has been submitted.</strong>
-					<p>
-						No information was sent to a school or saved on a server. This does
-						not reserve a visit or create an application.
-					</p>
-				</div>
 				<button
 					type="button"
 					className="button button-primary"
 					onClick={download}
 				>
-					Download your summary <Icon name="download" />
+					Download demo{" "}
+					{mode === "application"
+						? ""
+						: mode === "visit"
+							? "visit "
+							: "enquiry "}
+					summary (.txt) <Icon name="download" />
 				</button>
 				<button
 					type="button"
@@ -102,117 +162,135 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 				>
 					Start a new demo enquiry
 				</button>
+				<p className="small-copy">A downloaded file stays on your device.</p>
 			</div>
 		);
 	return (
 		<form
+			ref={form}
 			className="enquiry-form"
+			noValidate
 			onSubmit={(event) => {
 				event.preventDefault();
+				if (!validate()) return;
 				setVisited(true);
-				if (step < lastStep) setStep(step + 1);
+				if (step < lastStep) navigate(step + 1);
 				else setReady(true);
 			}}
 		>
-			<fieldset className="form-steps">
-				<legend className="sr-only">Enquiry progress</legend>
+			<ol className="form-progress" aria-label="Enquiry progress">
 				{steps.map((name, index) => (
-					<span
+					<li
 						key={name}
-						className={
-							step === index
-								? "step-current"
-								: step > index
-									? "step-complete"
-									: ""
-						}
 						aria-current={step === index ? "step" : undefined}
+						className={step === index ? "step-current" : ""}
 					>
-						<i>{step > index ? <Icon name="check" /> : index + 1}</i>
-						<span>{name}</span>
-					</span>
+						<span>{index + 1}</span>
+						{name}
+					</li>
 				))}
-			</fieldset>
+			</ol>
 			<div className="form-step-heading">
 				<p className="eyebrow">
-					Step {step + 1} of {steps.length}
+					{step + 1} of {steps.length}
 				</p>
 				<h2 ref={heading} tabIndex={-1}>
 					{step === lastStep
-						? "Everything look right?"
-						: step === 0
-							? "Let’s start with you."
+						? mode === "application"
+							? "Review your demo enquiry"
 							: mode === "visit"
-								? "Make the visit your own."
-								: "A little about the student."}
+								? "Review your visit enquiry"
+								: "Review your enquiry"
+						: steps[step]}
 				</h2>
 				<p>
 					{step === lastStep
-						? "Review your details before creating your downloadable demo summary."
-						: "Please use invented details to explore this portfolio experience."}
+						? "Check your example details before creating a local summary. Nothing will be sent."
+						: step === 0
+							? "Use an example name and email address. Phone number is optional."
+							: "Add an example first name and choose the proposed class."}
 				</p>
 			</div>
+			{Object.keys(errors).length > 0 && (
+				<p role="alert" className="error-summary">
+					Check the highlighted fields before continuing.
+				</p>
+			)}
 			{step === 0 && (
 				<div className="field-grid">
-					<label className="field full">
-						Parent or guardian name <span>*</span>
+					<label className="field full" htmlFor={`${mode}-parent`}>
+						Parent or guardian name <small>Required</small>
 						<input
+							{...inputProps("parent")}
 							required
 							autoComplete="off"
 							value={details.parent}
 							onChange={(event) => update("parent", event.target.value)}
 							maxLength={100}
-							placeholder="e.g. Alex Morgan"
+							placeholder="Alex Morgan"
 						/>
+						{error("parent")}
 					</label>
-					<label className="field">
-						Email address <span>*</span>
+					<label className="field" htmlFor={`${mode}-email`}>
+						Email address <small>Required</small>
 						<input
+							{...inputProps("email")}
 							required
 							type="email"
 							autoComplete="off"
 							value={details.email}
 							onChange={(event) => update("email", event.target.value)}
 							maxLength={150}
-							placeholder="alex@example.com"
+							placeholder="parent@example.com"
 						/>
+						{error("email")}
 					</label>
-					<label className="field">
+					<label className="field" htmlFor={`${mode}-phone`}>
 						Phone number <small>Optional</small>
 						<input
+							{...inputProps("phone")}
 							type="tel"
 							autoComplete="off"
 							value={details.phone}
 							onChange={(event) => update("phone", event.target.value)}
 							maxLength={30}
-							placeholder="Your preferred contact number"
 						/>
 					</label>
 					{mode === "contact" && (
 						<>
-							<label className="field full">
-								What can we help with?
+							<label className="field full" htmlFor={`${mode}-topic`}>
+								Enquiry topic
 								<select
+									{...inputProps("topic")}
 									value={details.topic}
 									onChange={(event) => update("topic", event.target.value)}
 								>
-									<option>Admissions</option>
-									<option>Curriculum & learning</option>
-									<option>School life</option>
-									<option>Family support</option>
-									<option>General enquiry</option>
+									{[
+										"Admissions",
+										"Curriculum and learning",
+										"School life",
+										"Family information",
+										"General enquiry",
+									].map((topic) => (
+										<option key={topic}>{topic}</option>
+									))}
 								</select>
 							</label>
-							<label className="field full">
-								Your message <span>*</span>
+							<label className="field full" htmlFor={`${mode}-message`}>
+								Example message <small>Required</small>
 								<textarea
+									{...inputProps("message")}
 									required
 									value={details.message}
 									onChange={(event) => update("message", event.target.value)}
 									maxLength={2000}
-									rows={5}
-									placeholder="Tell us what you would like to know…"
+									rows={4}
 								/>
+								{error("message")}
+								<small>
+									Use invented information. Do not include private student
+									records or sensitive details.
+								</small>
 							</label>
 						</>
 					)}
@@ -220,19 +298,22 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 			)}
 			{step === 1 && mode !== "contact" && (
 				<div className="field-grid">
-					<label className="field">
-						Student first name <span>*</span>
+					<label className="field" htmlFor={`${mode}-student`}>
+						Student first name <small>Required</small>
 						<input
+							{...inputProps("student")}
 							required
 							value={details.student}
 							onChange={(event) => update("student", event.target.value)}
 							maxLength={80}
-							placeholder="e.g. Jordan"
+							placeholder="Jordan"
 						/>
+						{error("student")}
 					</label>
-					<label className="field">
+					<label className="field" htmlFor={`${mode}-year`}>
 						Proposed entry class
 						<select
+							{...inputProps("year")}
 							value={details.year}
 							onChange={(event) => update("year", event.target.value)}
 						>
@@ -242,110 +323,126 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 						</select>
 					</label>
 					{mode === "application" ? (
-						<label className="field full">
+						<label className="field full" htmlFor={`${mode}-current`}>
 							Current school <small>Optional</small>
 							<input
+								{...inputProps("current")}
 								value={details.current}
 								onChange={(event) => update("current", event.target.value)}
 								maxLength={150}
-								placeholder="Name of current school"
 							/>
 						</label>
 					) : (
-						<label className="field full">
+						<label className="field full" htmlFor={`${mode}-visit`}>
 							Preferred type of visit
 							<select
+								{...inputProps("visit")}
 								value={details.visit}
 								onChange={(event) => update("visit", event.target.value)}
 							>
-								<option>Personal campus visit</option>
-								<option>Saturday open morning</option>
-								<option>Online admissions conversation</option>
+								{[
+									"Personal campus visit",
+									"Open morning",
+									"Online conversation",
+								].map((visit) => (
+									<option key={visit}>{visit}</option>
+								))}
 							</select>
 						</label>
 					)}
-					<label className="field full">
-						Anything you would like us to know?<small>Optional</small>
+					<label className="field full" htmlFor={`${mode}-message`}>
+						{mode === "visit"
+							? "Questions for the visit"
+							: "Questions or notes"}
+						<small>Optional</small>
 						<textarea
+							{...inputProps("message")}
 							value={details.message}
 							onChange={(event) => update("message", event.target.value)}
 							maxLength={2000}
 							rows={4}
-							placeholder="Your interests, questions or visit preferences. Please don’t include sensitive information."
 						/>
+						<small>
+							Use invented information. Do not include health details or private
+							records.
+						</small>
 					</label>
 					{details.year === "SS3" && (
 						<p className="field-note full">
-							In a real admissions process, final-year transfers would need an
-							individual review of examination registration and curriculum
-							compatibility.
+							Final-year entry requires individual review in the school model.
 						</p>
 					)}
 				</div>
 			)}
 			{step === lastStep && (
 				<>
-					<dl className="review-details">
-						<div>
-							<dt>Parent or guardian</dt>
-							<dd>{details.parent}</dd>
-						</div>
-						<div>
-							<dt>Email</dt>
-							<dd>{details.email}</dd>
-						</div>
-						<div>
-							<dt>Phone</dt>
-							<dd>{details.phone || "Not provided"}</dd>
-						</div>
+					<div className="review-edit">
+						<button
+							type="button"
+							className="text-button"
+							onClick={() => navigate(0)}
+						>
+							{mode === "contact"
+								? "Edit enquiry details"
+								: "Edit family details"}
+						</button>
 						{mode !== "contact" && (
-							<>
-								<div>
-									<dt>Student</dt>
-									<dd>{details.student}</dd>
-								</div>
-								<div>
-									<dt>Entry class</dt>
-									<dd>{details.year}</dd>
-								</div>
-							</>
+							<button
+								type="button"
+								className="text-button"
+								onClick={() => navigate(1)}
+							>
+								{mode === "visit"
+									? "Edit visit preferences"
+									: "Edit student details"}
+							</button>
 						)}
-						{mode === "visit" && (
-							<div>
-								<dt>Visit preference</dt>
-								<dd>{details.visit}</dd>
+					</div>
+					<dl className="review-details">
+						{[
+							["Parent or guardian", details.parent],
+							["Email", details.email],
+							["Phone", details.phone || "Not provided"],
+							...(mode !== "contact"
+								? [
+										["Student", details.student],
+										["Entry class", details.year],
+									]
+								: [["Topic", details.topic]]),
+							...(mode === "visit"
+								? [["Visit preference", details.visit]]
+								: []),
+							...(mode === "application"
+								? [["Current school", details.current || "Not provided"]]
+								: []),
+							["Questions or notes", details.message || "None"],
+						].map(([label, value]) => (
+							<div key={label}>
+								<dt>{label}</dt>
+								<dd>{value}</dd>
 							</div>
-						)}
-						{mode === "contact" && (
-							<div>
-								<dt>Topic</dt>
-								<dd>{details.topic}</dd>
-							</div>
-						)}
-						{mode === "application" && (
-							<div>
-								<dt>Current school</dt>
-								<dd>{details.current || "Not provided"}</dd>
-							</div>
-						)}
-						<div>
-							<dt>Your notes</dt>
-							<dd>{details.message || "None"}</dd>
-						</div>
+						))}
 					</dl>
 					<label className="consent-field">
 						<input
+							{...inputProps("consent")}
 							type="checkbox"
 							required
 							checked={details.consent}
 							onChange={(event) => update("consent", event.target.checked)}
 						/>
 						<span>
-							I understand this is a portfolio demo and these details will only
-							be used to create a summary in my browser.{" "}
-							<Link href="/policies">Read the privacy note.</Link>
+							I understand that this demo creates a summary in my browser and
+							does not{" "}
+							{mode === "application"
+								? "send an application"
+								: mode === "visit"
+									? "book an appointment"
+									: "send a message"}
+							. <Link href="/policies">Read the privacy note.</Link>
 						</span>
 					</label>
+					{error("consent")}
 				</>
 			)}
 			<div className="form-actions">
@@ -353,22 +450,27 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 					<button
 						type="button"
 						className="text-button"
-						onClick={() => {
-							setVisited(true);
-							setStep(step - 1);
-						}}
+						onClick={() => navigate(step - 1)}
 					>
 						Back
 					</button>
 				)}
 				<button type="submit" className="button button-primary">
-					{step === lastStep ? "Create demo summary" : "Continue"}
+					{step === lastStep
+						? "Create demo summary"
+						: mode === "contact"
+							? "Review enquiry"
+							: step === 0
+								? mode === "visit"
+									? "Continue to visit preferences"
+									: "Continue to student details"
+								: "Review details"}
 					<Icon />
 				</button>
 			</div>
 			<p className="small-copy">
-				Your details stay in memory while you complete this form. Refreshing the
-				page clears them. No uploads or payments are collected.
+				Details are held temporarily while you complete the form. Refreshing
+				clears them. A downloaded file stays on your device.
 			</p>
 		</form>
 	);
