@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	/* config options here */
-	cacheComponents: true,
-	partialPrefetching: true,
+	// Serve the generated site with Cloudflare Workers Assets.
+	output: "export",
+	images: { unoptimized: true },
 	turbopack: {
 		rules: {
 			"*.css": {
