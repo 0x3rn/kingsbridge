@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CampusTour } from "@/components/interactive";
+import { TextLink } from "@/components/ui";
 import {
 	Cards,
 	JumpLinks,
@@ -11,65 +11,75 @@ import {
 import { dailySchedule } from "@/lib/content";
 export const metadata: Metadata = {
 	alternates: { canonical: "/school-life" },
-	title: "School life",
+	title: "School Life",
 	description:
-		"Activities, personal support, an example school day and an illustrative campus gallery.",
+		"Sports, creative activities, clubs and societies, student support and school routines at Kingsbridge.",
 };
 export default function SchoolLife() {
 	return (
 		<main id="main">
 			<PageOpening
-				title="A school day with room for more"
-				label="School life"
+				title="Life at Kingsbridge"
+				label="School Life"
 				image="sports"
-				intro="Explore the activities, routines and personal support in the Kingsbridge school concept, from sport and creative work to tutor time and clubs."
+				intro="Our students learn, build friendships and develop their interests through classroom activities, sports, clubs and societies."
 			/>
 			<JumpLinks
 				links={[
-					{ label: "Activities", href: "#activities" },
-					{ label: "Student support", href: "#wellbeing" },
-					{ label: "School day", href: "#day" },
-					{ label: "Campus gallery", href: "#gallery" },
+					{ label: "Sports", href: "#activities" },
+					{ label: "Creative Activities", href: "#creative" },
+					{ label: "Clubs and Societies", href: "#clubs" },
+					{ label: "Student Support", href: "#wellbeing" },
+					{ label: "School Day", href: "#day" },
 					{ label: "Houses", href: "#houses" },
 				]}
 			/>
-			<Section id="activities" title="Find an activity worth trying">
-				<Cards
-					items={[
-						{
-							title: "Sport",
-							text: "Basketball, football and athletics provide opportunities to practise skills, take part in teams and enjoy movement. The model includes participation for beginners as well as competitive activity.",
-						},
-						{
-							title: "Arts and performance",
-							text: "Music, visual art, drama and public speaking give students opportunities to make, rehearse and share their work.",
-						},
-						{
-							title: "Clubs and projects",
-							text: "Science, coding, robotics, debate, reading, enterprise and environmental projects offer different ways to explore interests and contribute.",
-						},
-					]}
-				/>
-			</Section>
-			<Section id="wellbeing" title="Know who to ask for help" soft>
-				<p className="reading-width">
-					Regular tutor contact gives students a familiar adult to approach
-					about routines, schoolwork and wellbeing. The model emphasises
-					listening to concerns, responding to bullying and working with
-					families when support is needed.
-				</p>
-				<p className="demo-note">
-					This website is not a live reporting service.
-				</p>
-				<Link className="text-link" href="/policies#safeguarding">
-					Read the safeguarding principles
-				</Link>
+			<Section
+				id="activities"
+				title="Sports and Physical Development"
+				intro="Basketball, football and athletics give students opportunities to stay active, develop skills and work as part of a team. We encourage participation and good sportsmanship alongside competitive performance."
+			>
+				<TextLink href="/news/more-than-the-final-score">
+					School Sport at Kingsbridge
+				</TextLink>
 			</Section>
 			<Section
-				id="day"
-				title="An example school day"
-				intro="Illustrative timings for the portfolio concept."
+				id="creative"
+				title="Arts, Music and Public Speaking"
+				intro="Creative activities give students opportunities to express ideas, develop confidence and share their work. Music, art, drama and public speaking contribute to a balanced school experience."
+				soft
 			>
+				<TextLink href="/news/finding-your-voice">
+					Debate and Public Speaking
+				</TextLink>
+			</Section>
+			<Section
+				id="clubs"
+				title="Clubs and Societies"
+				intro="Our clubs and societies allow students to explore interests beyond their regular subjects. Activities include science, coding, robotics, debate, reading, enterprise and environmental projects."
+			>
+				<TextLink href="/news/small-questions-big-discoveries">
+					Practical Science
+				</TextLink>
+			</Section>
+			<Section id="wellbeing" title="Student Guidance and Wellbeing" soft>
+				<div className="prose reading-width">
+					<p>
+						Students are encouraged to speak with their class teacher or another
+						trusted member of staff when they need help. We work with parents to
+						address concerns about learning, behaviour, friendships and
+						wellbeing.
+					</p>
+					<p>
+						We expect respectful conduct and take concerns about bullying or
+						inappropriate behaviour seriously.
+					</p>
+				</div>
+				<TextLink href="/policies#safeguarding">
+					Student Welfare Information
+				</TextLink>
+			</Section>
+			<Section id="day" title="Our School Day">
 				<ol className="day-timeline">
 					{dailySchedule.map((item) => (
 						<li key={item.time}>
@@ -83,17 +93,10 @@ export default function SchoolLife() {
 				</ol>
 			</Section>
 			<Section
-				id="gallery"
-				title="Explore the campus concept"
-				intro="AI-generated images illustrating a fictional school. These are not photographs of an operating campus."
-				soft
-			>
-				<CampusTour />
-			</Section>
-			<Section
 				id="houses"
-				title="A smaller community within the school"
-				intro="House activities bring students from different year groups together for teamwork, contribution and friendly competition."
+				title="Our House System"
+				intro="The house system brings students from different classes together through sports, competitions and school activities. It encourages teamwork, participation and a sense of belonging."
+				soft
 			>
 				<Cards
 					columns={4}
@@ -104,6 +107,13 @@ export default function SchoolLife() {
 						{ title: "Elm", text: "Teamwork" },
 					]}
 				/>
+			</Section>
+			<Section
+				id="gallery"
+				title="Our Learning Environment"
+				intro="Explore the classrooms, practical learning spaces and shared facilities that support school life at Kingsbridge."
+			>
+				<CampusTour />
 			</Section>
 			<NextAction context="life" />
 		</main>

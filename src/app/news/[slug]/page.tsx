@@ -39,15 +39,14 @@ export default async function Article({
 					<div className="breadcrumb">
 						<Link href="/">Home</Link>
 						<span>/</span>
-						<Link href="/news">News</Link>
+						<Link href="/news">School News</Link>
 					</div>
 					<p className="eyebrow">{article.category}</p>
 					<h1>{article.title}</h1>
 					<p className="article-excerpt">{article.excerpt}</p>
 					<div className="article-meta">
-						<span>{article.date}</span>
+						<span>Published {article.date}</span>
 						<span>{article.reading}</span>
-						<span>Illustrative portfolio story</span>
 					</div>
 				</header>
 				<figure className="container">
@@ -59,31 +58,38 @@ export default async function Article({
 						sizes="90vw"
 					/>
 					<figcaption>
-						{article.slug === "finding-your-voice"
-							? "Reading and discussion in an illustrative library setting."
-							: "Illustrative school activity."}{" "}
-						AI-generated image.
+						{article.image === "science"
+							? "Practical science"
+							: article.image === "sports"
+								? "Sports and teamwork"
+								: article.image === "library"
+									? "Learning in the library"
+									: "Our school grounds"}
 					</figcaption>
 				</figure>
 				<div className="article-body">
-					<p className="article-intro">{article.intro}</p>
+					{article.intro.split("\n\n").map((paragraph, index) => (
+						<p
+							key={paragraph}
+							className={index === 0 ? "article-intro" : undefined}
+						>
+							{paragraph}
+						</p>
+					))}
 					{article.sections.map((section) => (
 						<section key={section.title}>
 							<h2>{section.title}</h2>
 							<p>{section.text}</p>
 						</section>
 					))}
+					{article.closing && <p>{article.closing}</p>}
 					<div className="article-end">
-						<p className="small-copy">
-							An illustrative story written for the fictional Kingsbridge
-							College portfolio.
-						</p>
 						<ShareButton title={article.title} />
 					</div>
-					<TextLink href="/news">Back to news</TextLink>
+					<TextLink href="/news">Back to School News</TextLink>
 				</div>
 			</article>
-			<Section title="More school stories" soft>
+			<Section title="More News from Kingsbridge" soft>
 				<div className="news-grid">
 					{news
 						.filter((item) => item.slug !== article.slug)

@@ -1,6 +1,6 @@
 # Kingsbridge College
 
-An original, responsive portfolio website for a fictional secondary school imagined in Lagos, Nigeria. Built with Next.js App Router, TypeScript, Framer Motion and Tailwind CSS. Forest green, warm ivory, restrained gold, serif headings and original generated imagery establish the visual direction. A persistent project notice, direct page copy and browser-only demo labels distinguish the concept from an operating school.
+An original, responsive portfolio website for a fictional secondary school in Lagos, Nigeria. Built with Next.js App Router, TypeScript, Framer Motion and Tailwind CSS. Forest green, warm ivory, restrained gold, serif headings and original generated imagery establish the visual direction. The pages use the school's voice, with one notice above the header and fuller portfolio information on the welfare/website-information page. Form completion and newsletter feedback accurately describe their local preview behaviour.
 
 ## Run locally
 
@@ -35,16 +35,16 @@ Biome provides recommended JavaScript, TypeScript, React and Next.js linting. It
 - Admissions: typical entry requirements, document checklist, assessment, transfers, fees approach and FAQs.
 - Apply, visit and contact: guided enquiry experiences with validation, review, back navigation, completion and downloadable text summaries.
 - News: category/search filters, empty-state reset, four complete original articles and sharing controls.
-- Families: illustrative term dates, calendar download, uniform, transport, attendance and practical FAQs.
+- Parents: term dates, calendar download, school hours, uniform, materials, attendance and practical FAQs.
 - Prospectus: printable college overview; the browser print dialogue supports saving a PDF.
-- Policies: portfolio privacy information and illustrative safeguarding principles.
+- Student welfare and website information: distinct school-facing guidance and portfolio/privacy information.
 - Custom 404, accessible mobile navigation, site search, four-view campus gallery and newsletter demonstration.
 
 There are 18 content pages, including generated curriculum and article routes. Layouts adapt to desktop, tablet and mobile, with keyboard-operable native dialogs, labelled controls, visible focus, a skip link, semantic landmarks and reduced-motion support.
 
 ## Portfolio behaviour
 
-The college, school stories, dates and operational descriptions are invented. The curriculum is a general Nigerian junior/senior secondary model, not an accreditation claim. No fees, examination approvals, real location or contact details are asserted.
+The college, school stories, dates and operational descriptions are prepared for this presentation. The curriculum uses broad Nigerian secondary-school learning areas and makes no accreditation claim. No fee amounts, examination approvals, school address, telephone, email, staff identities or approved welfare policy are invented. These details must be supplied and approved before a client version is published. Transport is omitted until a service is confirmed.
 
 Enquiry forms are deliberately browser-only. They use in-memory state, clear on refresh, and create a local text download. They do not send email, save records, accept payments or reserve a place. The newsletter offers local demonstration feedback only. Use invented details when testing.
 

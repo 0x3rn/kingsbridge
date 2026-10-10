@@ -3,18 +3,18 @@ import { Journal } from "@/components/interactive";
 import { NextAction, PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
 	alternates: { canonical: "/news" },
-	title: "News",
+	title: "School News",
 	description:
-		"Illustrative portfolio stories about classroom learning, activities and student choices.",
+		"Updates on learning, activities and life at Kingsbridge College.",
 };
 export default function News() {
 	return (
 		<main id="main" className="reading-page">
 			<PageOpening
 				compact
-				title="News from Kingsbridge"
+				title="School News"
 				label="News"
-				intro="Example stories about classroom learning, activities and student choices, written for this fictional school concept."
+				intro="Updates on learning, activities and life at Kingsbridge College."
 			/>
 			<section className="section">
 				<div className="container">

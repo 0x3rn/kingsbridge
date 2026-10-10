@@ -10,70 +10,67 @@ import {
 } from "@/components/page-sections";
 export const metadata: Metadata = {
 	alternates: { canonical: "/visit" },
-	title: "Explore visits",
+	title: "School Visits",
 	description:
-		"An illustrative campus gallery and browser-only visit planner. No appointment is booked.",
+		"Visit Kingsbridge College to see our learning environment and discuss your child’s education.",
 };
 export default function Visit() {
 	return (
 		<main id="main" className="decision-page">
 			<PageOpening
 				compact
-				title="Explore a visit to Kingsbridge"
-				label="Explore visits"
-				intro="See the campus concept and the kinds of conversations a school visit could include. The visit planner is a demo; it does not book an appointment."
+				title="Visit Kingsbridge College"
+				label="School Visits"
+				intro="A school visit gives you the opportunity to see our learning environment, understand our routines and ask questions about your child’s education."
 			>
 				<div className="button-row">
-					<ButtonLink href="#gallery">View campus gallery</ButtonLink>
-					<ButtonLink href="#planner" variant="outline">
-						Try the visit planner
+					<ButtonLink href="#planner">Request a Visit</ButtonLink>
+					<ButtonLink href="#gallery" variant="outline">
+						View Campus Gallery
 					</ButtonLink>
 				</div>
 			</PageOpening>
 			<JumpLinks
 				links={[
-					{ label: "Campus gallery", href: "#gallery" },
-					{ label: "Visit formats", href: "#formats" },
-					{ label: "Visit planner", href: "#planner" },
+					{ label: "School Visits", href: "#formats" },
+					{ label: "Request a Visit", href: "#planner" },
+					{ label: "Our Campus", href: "#gallery" },
 				]}
 			/>
-			<Section
-				id="gallery"
-				title="Explore the campus concept"
-				intro="Illustrative learning spaces, not photographs of an operating school."
-			>
-				<CampusTour />
-			</Section>
-			<Section id="formats" title="Three ways to get to know a school" soft>
+			<Section id="formats" title="Arrange a School Visit">
 				<Cards
 					items={[
 						{
-							title: "Personal campus visit",
-							text: "A guided introduction to classrooms, shared spaces and school routines, with time for questions about the student’s needs and interests.",
+							title: "Personal school visit",
+							text: "See our learning spaces and speak with the admissions team about your child’s proposed class and interests.",
 						},
 						{
-							title: "Open morning",
-							text: "An introduction to several areas of school life and an opportunity to speak with subject teams.",
+							title: "Open day",
+							text: "Meet members of the school community and learn more about our academic programmes and school activities.",
 						},
 						{
-							title: "Online conversation",
-							text: "A first discussion about curriculum, admissions and family priorities when an in-person visit is not practical.",
+							title: "Online admissions discussion",
+							text: "If you are unable to visit in person, request an online discussion about admission and school information.",
 						},
 					]}
 				/>
-				<p className="demo-note">
-					Illustrative visit formats. No events, appointments or booking slots
-					are available for this fictional school.
-				</p>
 			</Section>
 			<Section
 				id="planner"
-				title="Try the visit planner"
-				intro="Choose a visit type and entry class, then review an example enquiry summary."
+				title="Request a School Visit"
+				intro="Provide your contact details, your child’s proposed class and the type of visit you are interested in."
+				soft
 			>
 				<div className="planner-form">
 					<EnquiryForm mode="visit" />
 				</div>
+			</Section>
+			<Section
+				id="gallery"
+				title="Our Campus"
+				intro="View our learning spaces and shared facilities."
+			>
+				<CampusTour />
 			</Section>
 		</main>
 	);

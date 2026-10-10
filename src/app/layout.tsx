@@ -21,15 +21,15 @@ const serif = localFont({
 export const metadata: Metadata = {
 	metadataBase: siteURL,
 	title: {
-		default: "Kingsbridge College | Junior and senior secondary school concept",
+		default: "Kingsbridge College | Junior and Senior Secondary School, Lagos",
 		template: "%s | Kingsbridge College",
 	},
 	description:
-		"Discover Kingsbridge College, a fictional secondary school where curiosity, character and possibility come together. Explore learning, school life and admissions.",
+		"Kingsbridge College is a co-educational day secondary school in Lagos, offering Junior and Senior Secondary education.",
 	openGraph: {
 		title: "Kingsbridge College",
 		description:
-			"A fictional co-educational day school concept in Lagos for JSS1–SS3.",
+			"Co-educational day secondary education in Lagos, from JSS1 to SS3.",
 		type: "website",
 		images: [
 			{

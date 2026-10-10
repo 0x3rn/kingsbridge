@@ -268,16 +268,15 @@ export function NewsCard({
 					<Icon name="diagonal" />
 				</span>
 			</Link>
-			<p className="story-label">Illustrative portfolio story</p>
 			<div className="news-meta">
 				<span>{article.category}</span>
-				<time>{article.date}</time>
+				<time>Published {article.date}</time>
 			</div>
 			<h3>
 				<Link href={`/news/${article.slug}`}>{article.title}</Link>
 			</h3>
 			<p>{article.excerpt}</p>
-			<TextLink href={`/news/${article.slug}`}>Read the story</TextLink>
+			<TextLink href={`/news/${article.slug}`}>Read More</TextLink>
 		</article>
 	);
 }

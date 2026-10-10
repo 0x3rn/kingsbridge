@@ -4,12 +4,10 @@ export default function NotFound() {
 	return (
 		<main id="main" className="not-found container">
 			<p className="eyebrow">404</p>
-			<h1>We couldn’t find that page</h1>
-			<p>
-				The link may be out of date. Return to the homepage or search the site.
-			</p>
+			<h1>Page Not Found</h1>
+			<p>The page you requested may have moved or is no longer available.</p>
 			<div className="button-row">
-				<ButtonLink href="/">Go to homepage</ButtonLink>
+				<ButtonLink href="/">Return to Home</ButtonLink>
 				<SiteSearchButton />
 			</div>
 		</main>

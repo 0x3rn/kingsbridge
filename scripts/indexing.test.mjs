@@ -133,7 +133,7 @@ test("missing routes and assets return the custom noindex 404", async () => {
 		const response = await request(pathname);
 		assert.equal(response.status, 404, pathname);
 		assert.equal(response.headers.get("x-robots-tag"), "noindex");
-		assert.match(await response.text(), /We couldn’t find that page/);
+		assert.match(await response.text(), /Page Not Found/);
 	}
 	const head = await request("/missing-page", { method: "HEAD" });
 	assert.equal(head.status, 404);

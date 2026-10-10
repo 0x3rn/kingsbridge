@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "./ui";
 type Mode = "application" | "visit" | "contact";
@@ -13,7 +12,6 @@ type Details = {
 	visit: string;
 	topic: string;
 	message: string;
-	consent: boolean;
 };
 type Errors = Partial<Record<keyof Details, string>>;
 const emptyDetails: Details = {
@@ -23,10 +21,9 @@ const emptyDetails: Details = {
 	student: "",
 	year: "JSS1",
 	current: "",
-	visit: "Personal campus visit",
+	visit: "Personal school visit",
 	topic: "Admissions",
 	message: "",
-	consent: false,
 };
 export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 	const [details, setDetails] = useState<Details>(emptyDetails);
@@ -39,11 +36,11 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 	const form = useRef<HTMLFormElement>(null);
 	const steps =
 		mode === "contact"
-			? ["Your example enquiry", "Review enquiry"]
+			? ["Your Enquiry", "Review Your Details"]
 			: [
-					mode === "visit" ? "Family details" : "Parent or guardian details",
-					mode === "visit" ? "Visit preferences" : "Student and entry class",
-					"Review details",
+					"Parent or Guardian Details",
+					mode === "visit" ? "Visit Details" : "Student Details",
+					mode === "visit" ? "Review Your Request" : "Review Your Details",
 				];
 	const lastStep = steps.length - 1;
 	// biome-ignore lint/correctness/useExhaustiveDependencies: Focus follows navigation and completion, not typing.
@@ -74,17 +71,13 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 	function validate() {
 		const next: Errors = {};
 		if (step === 0) {
-			if (!details.parent.trim())
-				next.parent = "Enter an example parent or guardian name.";
+			if (!details.parent.trim()) next.parent = "Please enter your name.";
 			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(details.email))
-				next.email =
-					"Enter a valid example email address, such as parent@example.com.";
+				next.email = "Please enter a valid email address.";
 			if (mode === "contact" && !details.message.trim())
-				next.message = "Add an example question or message.";
+				next.message = "Please enter your message.";
 		} else if (step !== lastStep && !details.student.trim())
-			next.student = "Enter an example student first name.";
-		if (step === lastStep && !details.consent)
-			next.consent = "Confirm that you understand this is a demo.";
+			next.student = "Please enter the student’s first name.";
 		setErrors(next);
 		if (Object.keys(next).length)
 			setValidationAttempt((previous) => previous + 1);
@@ -106,22 +99,20 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 		) : null;
 	}
 	function download() {
-		const text = `KINGSBRIDGE COLLEGE — PORTFOLIO DEMO\n${mode.toUpperCase()} ENQUIRY SUMMARY\n\nNo application or message was sent. No visit was booked or place reserved.\n\nParent / guardian: ${details.parent}\nEmail: ${details.email}\nPhone: ${details.phone || "Not provided"}\n${mode !== "contact" ? `Student first name: ${details.student}\nEntry class: ${details.year}\n` : `Topic: ${details.topic}\n`}${mode === "application" ? `Current school: ${details.current || "Not provided"}\n` : ""}${mode === "visit" ? `Visit preference: ${details.visit}\n` : ""}\nNotes: ${details.message || "None"}\n\nThis file is saved only on your device.\n`;
+		const text = `KINGSBRIDGE COLLEGE — PORTFOLIO PREVIEW\n${mode === "visit" ? "VISIT REQUEST" : "ENQUIRY"} SUMMARY\n\nNo application or message was sent. No visit was booked or place reserved.\n\nParent / guardian: ${details.parent}\nEmail: ${details.email}\nPhone: ${details.phone || "Not provided"}\n${mode !== "contact" ? `Student first name: ${details.student}\nEntry class: ${details.year}\n` : `Topic: ${details.topic}\n`}${mode === "application" ? `Current school: ${details.current || "Not provided"}\n` : ""}${mode === "visit" ? `Visit preference: ${details.visit}\n` : ""}\nNotes: ${details.message || "None"}\n\nThis file is saved only on your device.\n`;
 		const url = URL.createObjectURL(
 			new Blob([text], { type: "text/plain;charset=utf-8" }),
 		);
 		const anchor = document.createElement("a");
 		anchor.href = url;
-		anchor.download = `kingsbridge-${mode}-demo-summary.txt`;
+		anchor.download = `kingsbridge-${mode}-summary.txt`;
 		anchor.click();
 		setTimeout(() => URL.revokeObjectURL(url), 1000);
 	}
 	const completionTitle =
 		mode === "visit"
-			? "Your demo visit summary is ready"
-			: mode === "contact"
-				? "Your demo enquiry summary is ready"
-				: "Your demo summary is ready";
+			? "Your visit request summary is ready."
+			: "Your enquiry summary is ready.";
 	if (ready)
 		return (
 			<div className="enquiry-form form-success">
@@ -133,23 +124,20 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 				</h2>
 				<p>
 					{mode === "visit"
-						? "This summary was created in your browser. No appointment has been booked."
+						? "Download your request details below. This preview has not sent the request or booked an appointment."
 						: mode === "contact"
-							? "Your message has not been sent and no reply will be issued."
-							: "This summary was created in your browser. No school has received it and no place has been reserved."}
+							? "Download a copy below. This preview has not sent your message."
+							: "You can download a copy for your records. This preview has not sent your enquiry to the school."}
 				</p>
 				<button
 					type="button"
 					className="button button-primary"
 					onClick={download}
 				>
-					Download demo{" "}
-					{mode === "application"
-						? ""
-						: mode === "visit"
-							? "visit "
-							: "enquiry "}
-					summary (.txt) <Icon name="download" />
+					{mode === "visit"
+						? "Download Visit Request"
+						: "Download Enquiry Summary"}{" "}
+					<Icon name="download" />
 				</button>
 				<button
 					type="button"
@@ -160,7 +148,7 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 						setDetails(emptyDetails);
 					}}
 				>
-					Start a new demo enquiry
+					Start a New Enquiry
 				</button>
 				<p className="small-copy">A downloaded file stays on your device.</p>
 			</div>
@@ -195,20 +183,16 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 					{step + 1} of {steps.length}
 				</p>
 				<h2 ref={heading} tabIndex={-1}>
-					{step === lastStep
-						? mode === "application"
-							? "Review your demo enquiry"
-							: mode === "visit"
-								? "Review your visit enquiry"
-								: "Review your enquiry"
-						: steps[step]}
+					{steps[step]}
 				</h2>
 				<p>
 					{step === lastStep
-						? "Check your example details before creating a local summary. Nothing will be sent."
+						? mode === "visit"
+							? "Check the information below before saving your visit request."
+							: "Check the information below before saving your enquiry summary."
 						: step === 0
-							? "Use an example name and email address. Phone number is optional."
-							: "Add an example first name and choose the proposed class."}
+							? "Provide your contact details. Phone number is optional."
+							: "Tell us about your child and the proposed class."}
 				</p>
 			</div>
 			{Object.keys(errors).length > 0 && (
@@ -219,7 +203,7 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 			{step === 0 && (
 				<div className="field-grid">
 					<label className="field full" htmlFor={`${mode}-parent`}>
-						Parent or guardian name <small>Required</small>
+						Full name <small>Required</small>
 						<input
 							{...inputProps("parent")}
 							required
@@ -267,17 +251,18 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 								>
 									{[
 										"Admissions",
-										"Curriculum and learning",
-										"School life",
-										"Family information",
-										"General enquiry",
+										"School Fees",
+										"Academic Programme",
+										"School Visits",
+										"Parents’ Information",
+										"General Enquiry",
 									].map((topic) => (
 										<option key={topic}>{topic}</option>
 									))}
 								</select>
 							</label>
 							<label className="field full" htmlFor={`${mode}-message`}>
-								Example message <small>Required</small>
+								Your message <small>Required</small>
 								<textarea
 									{...inputProps("message")}
 									required
@@ -288,8 +273,8 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 								/>
 								{error("message")}
 								<small>
-									Use invented information. Do not include private student
-									records or sensitive details.
+									Please do not include medical records or other sensitive
+									documents in this form.
 								</small>
 							</label>
 						</>
@@ -299,7 +284,7 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 			{step === 1 && mode !== "contact" && (
 				<div className="field-grid">
 					<label className="field" htmlFor={`${mode}-student`}>
-						Student first name <small>Required</small>
+						Student’s first name <small>Required</small>
 						<input
 							{...inputProps("student")}
 							required
@@ -311,7 +296,7 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 						{error("student")}
 					</label>
 					<label className="field" htmlFor={`${mode}-year`}>
-						Proposed entry class
+						Proposed class
 						<select
 							{...inputProps("year")}
 							value={details.year}
@@ -334,16 +319,16 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 						</label>
 					) : (
 						<label className="field full" htmlFor={`${mode}-visit`}>
-							Preferred type of visit
+							Preferred visit type
 							<select
 								{...inputProps("visit")}
 								value={details.visit}
 								onChange={(event) => update("visit", event.target.value)}
 							>
 								{[
-									"Personal campus visit",
-									"Open morning",
-									"Online conversation",
+									"Personal school visit",
+									"Open day",
+									"Online admissions discussion",
 								].map((visit) => (
 									<option key={visit}>{visit}</option>
 								))}
@@ -353,7 +338,7 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 					<label className="field full" htmlFor={`${mode}-message`}>
 						{mode === "visit"
 							? "Questions for the visit"
-							: "Questions or notes"}
+							: "Questions or additional information"}
 						<small>Optional</small>
 						<textarea
 							{...inputProps("message")}
@@ -363,13 +348,14 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 							rows={4}
 						/>
 						<small>
-							Use invented information. Do not include health details or private
-							records.
+							Please do not include medical records or other sensitive documents
+							in this form.
 						</small>
 					</label>
 					{details.year === "SS3" && (
 						<p className="field-note full">
-							Final-year entry requires individual review in the school model.
+							Admission into a final-year class requires individual
+							consideration.
 						</p>
 					)}
 				</div>
@@ -382,9 +368,7 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 							className="text-button"
 							onClick={() => navigate(0)}
 						>
-							{mode === "contact"
-								? "Edit enquiry details"
-								: "Edit family details"}
+							{mode === "contact" ? "Edit Details" : "Edit Details"}
 						</button>
 						{mode !== "contact" && (
 							<button
@@ -393,8 +377,8 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 								onClick={() => navigate(1)}
 							>
 								{mode === "visit"
-									? "Edit visit preferences"
-									: "Edit student details"}
+									? "Edit Visit Details"
+									: "Edit Student Details"}
 							</button>
 						)}
 					</div>
@@ -415,7 +399,10 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 							...(mode === "application"
 								? [["Current school", details.current || "Not provided"]]
 								: []),
-							["Questions or notes", details.message || "None"],
+							[
+								"Questions or additional information",
+								details.message || "None",
+							],
 						].map(([label, value]) => (
 							<div key={label}>
 								<dt>{label}</dt>
@@ -423,26 +410,6 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 							</div>
 						))}
 					</dl>
-					<label className="consent-field">
-						<input
-							{...inputProps("consent")}
-							type="checkbox"
-							required
-							checked={details.consent}
-							onChange={(event) => update("consent", event.target.checked)}
-						/>
-						<span>
-							I understand that this demo creates a summary in my browser and
-							does not{" "}
-							{mode === "application"
-								? "send an application"
-								: mode === "visit"
-									? "book an appointment"
-									: "send a message"}
-							. <Link href="/policies">Read the privacy note.</Link>
-						</span>
-					</label>
-					{error("consent")}
 				</>
 			)}
 			<div className="form-actions">
@@ -457,21 +424,15 @@ export function EnquiryForm({ mode = "application" }: { mode?: Mode }) {
 				)}
 				<button type="submit" className="button button-primary">
 					{step === lastStep
-						? "Create demo summary"
-						: mode === "contact"
-							? "Review enquiry"
-							: step === 0
-								? mode === "visit"
-									? "Continue to visit preferences"
-									: "Continue to student details"
-								: "Review details"}
+						? mode === "visit"
+							? "Save Visit Request"
+							: "Save Enquiry Summary"
+						: step === 0 && mode !== "contact"
+							? "Continue"
+							: "Review Enquiry"}
 					<Icon />
 				</button>
 			</div>
-			<p className="small-copy">
-				Details are held temporarily while you complete the form. Refreshing
-				clears them. A downloaded file stays on your device.
-			</p>
 		</form>
 	);
 }

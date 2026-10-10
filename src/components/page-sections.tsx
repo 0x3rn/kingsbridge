@@ -6,6 +6,7 @@ export function PageOpening({
 	title,
 	intro,
 	label,
+	eyebrow,
 	image,
 	compact = false,
 	children,
@@ -13,6 +14,7 @@ export function PageOpening({
 	title: string;
 	intro: string;
 	label: string;
+	eyebrow?: string;
 	image?: string;
 	compact?: boolean;
 	children?: ReactNode;
@@ -28,7 +30,7 @@ export function PageOpening({
 						<span>/</span>
 						<span>{label}</span>
 					</div>
-					<Eyebrow>{label}</Eyebrow>
+					{eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
 					<h1>{title}</h1>
 					<p>{intro}</p>
 					{children}
@@ -37,12 +39,26 @@ export function PageOpening({
 					<figure>
 						<Photo
 							name={image}
-							alt={`AI-generated illustration of the fictional Kingsbridge ${image === "campus" ? "grounds" : image}.`}
+							alt={
+								image === "campus"
+									? "Students walking through the school grounds."
+									: image === "science"
+										? "Students taking part in practical science."
+										: image === "sports"
+											? "Students playing basketball."
+											: "Students reading and discussing a book in the library."
+							}
 							className="page-hero-photo"
 							eager
 						/>
 						<figcaption>
-							Illustrative campus concept · AI-generated image
+							{image === "campus"
+								? "Our school grounds"
+								: image === "science"
+									? "Practical science"
+									: image === "sports"
+										? "Sports and teamwork"
+										: "Learning in the library"}
 						</figcaption>
 					</figure>
 				)}
@@ -61,7 +77,7 @@ export function Section({
 	title: string;
 	intro?: string;
 	soft?: boolean;
-	children: ReactNode;
+	children?: ReactNode;
 }) {
 	return (
 		<section id={id} className={`section ${soft ? "soft-section" : ""}`}>
@@ -116,10 +132,10 @@ export function SchoolFacts() {
 	return (
 		<dl className="school-facts">
 			{[
-				["School type", "Co-educational day school concept"],
-				["Year groups", "JSS1–JSS3 and SS1–SS3"],
-				["Location", "Imagined in Lagos, Nigeria"],
-				["Learning journey", "Six years of secondary education"],
+				["School type", "Co-educational day school"],
+				["Classes", "JSS1–JSS3 and SS1–SS3"],
+				["Location", "Lagos, Nigeria"],
+				["Programme", "Junior and Senior Secondary Education"],
 			].map(([label, text]) => (
 				<div key={label}>
 					<dt>{label}</dt>
@@ -134,30 +150,34 @@ export function StageCards() {
 		<div className="programme-grid">
 			{[
 				{
-					title: "Junior secondary",
+					title: "Junior Secondary",
 					years: "JSS1–JSS3",
 					href: "/academics/junior-secondary",
 					image: "science",
-					text: "Build foundations in English, mathematics, science and other subject areas while learning new routines and growing in independence.",
+					text: "Our junior classes strengthen students’ understanding of core subjects while introducing a wider range of learning. Students also develop the organisation, study habits and confidence needed for secondary school.",
 				},
 				{
-					title: "Senior secondary",
+					title: "Senior Secondary",
 					years: "SS1–SS3",
 					href: "/academics/senior-secondary",
 					image: "library",
-					text: "Develop deeper subject knowledge, plan a balanced programme and prepare for examinations and the next stage of education.",
+					text: "Our senior classes provide more focused subject study, examination preparation and guidance on further education. Students receive support in choosing subjects that suit their strengths and future plans.",
 				},
 			].map((stage) => (
 				<Link href={stage.href} className="programme-card" key={stage.title}>
 					<Photo
 						name={stage.image}
-						alt={`Illustrative ${stage.title} learning space.`}
+						alt={
+							stage.image === "science"
+								? "Practical science in Junior Secondary."
+								: "Library learning in Senior Secondary."
+						}
 					/>
 					<div className="programme-content">
 						<span className="stage-label">{stage.years}</span>
 						<h3>{stage.title}</h3>
 						<p className="programme-description">{stage.text}</p>
-						<span className="programme-link">Explore {stage.title}</span>
+						<span className="programme-link">{stage.title} Programme</span>
 					</div>
 				</Link>
 			))}
@@ -166,40 +186,58 @@ export function StageCards() {
 }
 const closing = {
 	joining: {
-		title: "Explore joining Kingsbridge",
-		text: "Read about entry points, assessments and the steps in the model admissions process.",
-		primary: ["View admissions", "/admissions"],
-		secondary: ["Read the school guide", "/prospectus"],
+		title: "Get to know Kingsbridge.",
+		text: "Speak with our admissions team about your child’s education or arrange a visit to see the school.",
+		primary: ["Arrange a Visit", "/visit"],
+		secondary: ["Contact Us", "/contact"],
+	},
+	about: {
+		title: "Learn more about studying at Kingsbridge.",
+		text: "Explore our academic programmes or contact us about admission.",
+		primary: ["Our Academic Programmes", "/academics"],
+		secondary: ["Admissions", "/admissions"],
 	},
 	learning: {
-		title: "Find the right point of entry",
-		text: "See the requirements for junior entry, senior entry and transfers.",
-		primary: ["View entry requirements", "/admissions#requirements"],
-		secondary: ["Explore school life", "/school-life"],
+		title: "Find out more about our programmes.",
+		text: "Explore the Junior and Senior Secondary pages or contact us with questions about your child’s education.",
+		primary: ["Junior Secondary", "/academics/junior-secondary"],
+		secondary: ["Senior Secondary", "/academics/senior-secondary"],
+	},
+	junior: {
+		title: "Admission into Junior Secondary",
+		text: "Find out about admission into JSS1 and the requirements for transfer into other junior classes.",
+		primary: ["View Admission Requirements", "/admissions#junior-entry"],
+		secondary: ["Contact Admissions", "/contact"],
+	},
+	senior: {
+		title: "Admission into Senior Secondary",
+		text: "View the requirements for admission into SS1 and transfer into eligible senior classes.",
+		primary: ["View Admission Requirements", "/admissions#senior-entry"],
+		secondary: ["Contact Admissions", "/contact"],
 	},
 	life: {
-		title: "See how the school day fits together",
-		text: "Explore the learning spaces and practical arrangements in this school concept.",
-		primary: ["View campus gallery", "/school-life#gallery"],
-		secondary: ["Parent information", "/parents"],
+		title: "Get to know Kingsbridge.",
+		text: "Arrange a school visit or find everyday school information for parents.",
+		primary: ["Arrange a Visit", "/visit"],
+		secondary: ["Parents’ Information", "/parents"],
 	},
 	admissions: {
-		title: "Try the next step",
-		text: "Explore the demo form and create a local admissions summary.",
-		primary: ["Try the admissions form", "/apply"],
-		secondary: ["Try the visit planner", "/visit#planner"],
+		title: "Speak with our admissions team.",
+		text: "Contact us about admission, school fees or arranging a visit.",
+		primary: ["Admission Enquiry", "/apply"],
+		secondary: ["Arrange a Visit", "/visit"],
 	},
 	parents: {
-		title: "Find the information you need",
-		text: "Browse the school guide or explore the demo enquiry form.",
-		primary: ["Read the school guide", "/prospectus"],
-		secondary: ["Try the enquiry form", "/contact"],
+		title: "Stay connected with Kingsbridge.",
+		text: "Read our prospectus or contact us with your questions.",
+		primary: ["View Prospectus", "/prospectus"],
+		secondary: ["Contact Us", "/contact"],
 	},
 	news: {
-		title: "Explore learning at Kingsbridge",
-		text: "Find out how the curriculum develops from junior to senior secondary.",
-		primary: ["View academics", "/academics"],
-		secondary: ["More news", "/news"],
+		title: "Learn more about Kingsbridge.",
+		text: "Discover our academic programmes and opportunities beyond the classroom.",
+		primary: ["Academics", "/academics"],
+		secondary: ["School Life", "/school-life"],
 	},
 };
 export function NextAction({ context }: { context: keyof typeof closing }) {

@@ -9,39 +9,41 @@ export function Footer() {
 					<div className="footer-brand">
 						<Brand light />
 						<p>
-							A fictional co-educational day school concept for junior and
-							senior secondary education in Lagos, Nigeria.
+							Kingsbridge College is a co-educational day secondary school in
+							Lagos, offering Junior and Senior Secondary education.
 						</p>
 						<p className="footer-location">
 							<Icon name="location" />
-							Imagined in Lagos, Nigeria
+							Lagos, Nigeria
 						</p>
 					</div>
 					{[
 						{
-							title: "Explore the school",
+							title: "Our School",
 							links: [
-								["About Kingsbridge", "/about"],
+								["About Us", "/about"],
 								["Academics", "/academics"],
-								["School life", "/school-life"],
-								["News", "/news"],
+								["School Life", "/school-life"],
+								["School News", "/news"],
 							],
 						},
 						{
-							title: "Admissions and visits",
+							title: "Admissions",
 							links: [
-								["Admissions information", "/admissions"],
-								["Admissions form demo", "/apply"],
-								["Visit planner", "/visit#planner"],
-								["School guide", "/prospectus"],
+								["Admission Requirements", "/admissions#requirements"],
+								["Admission Enquiry", "/apply"],
+								["School Visits", "/visit"],
+								["Prospectus", "/prospectus"],
 							],
 						},
 						{
-							title: "Parent information",
+							title: "Parents and Contact",
 							links: [
-								["Term dates and essentials", "/parents"],
-								["Enquiry demo", "/contact"],
-								["Privacy and demo information", "/policies"],
+								["Parents’ Information", "/parents"],
+								["Term Dates", "/parents#calendar"],
+								["Contact Us", "/contact"],
+								["Student Welfare", "/policies"],
+								["Website Information", "/policies#project"],
 							],
 						},
 					].map((group) => (
@@ -58,7 +60,7 @@ export function Footer() {
 				<Newsletter />
 				<div className="footer-bottom">
 					<span>© 2026 Kingsbridge College</span>
-					<span>Fictional school · An original portfolio project</span>
+					<span>Portfolio preview</span>
 					<a href="#top">
 						Back to top <Icon name="diagonal" />
 					</a>

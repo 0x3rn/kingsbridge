@@ -18,7 +18,7 @@ export function SiteSearchButton() {
 				}
 			}}
 		>
-			Search the site <Icon name="search" />
+			Search the Website <Icon name="search" />
 		</button>
 	);
 }
@@ -44,9 +44,9 @@ export function Header() {
 			.includes(query.trim().toLowerCase()),
 	);
 	const academicLinks = [
-		{ label: "Academics overview", href: "/academics" },
-		{ label: "Junior secondary", href: "/academics/junior-secondary" },
-		{ label: "Senior secondary", href: "/academics/senior-secondary" },
+		{ label: "Our Curriculum", href: "/academics" },
+		{ label: "Junior Secondary", href: "/academics/junior-secondary" },
+		{ label: "Senior Secondary", href: "/academics/senior-secondary" },
 	];
 	function openSearch() {
 		searchRef.current?.showModal();
@@ -56,18 +56,19 @@ export function Header() {
 		<>
 			<div className="concept-notice">
 				<div className="container">
-					Fictional school website · Explore the design and demo forms. No
-					applications, bookings or messages are sent.
+					Portfolio preview: Kingsbridge College is a fictional school. Forms
+					and subscriptions are for demonstration only and do not send
+					information or confirm bookings.
 				</div>
 			</div>
 			<div className="utility-bar">
 				<div className="container">
-					<span>Junior and senior secondary · Lagos</span>
+					<span>Junior and Senior Secondary School · Lagos, Nigeria</span>
 					<div>
-						<Link href="/parents">Parent information</Link>
-						<Link href="/news">News</Link>
+						<Link href="/parents">Parents</Link>
+						<Link href="/news">School News</Link>
 						<Link href="/contact">
-							Enquiries <Icon name="diagonal" />
+							Contact Us <Icon name="diagonal" />
 						</Link>
 					</div>
 				</div>
@@ -122,7 +123,7 @@ export function Header() {
 							<Icon name="search" />
 						</button>
 						<Link className="button button-primary header-visit" href="/visit">
-							Explore visits <Icon name="diagonal" />
+							Arrange a Visit <Icon name="diagonal" />
 						</Link>
 						<button
 							ref={menuButton}
@@ -168,10 +169,10 @@ export function Header() {
 						navigation[0],
 						...academicLinks,
 						...navigation.slice(2),
-						{ label: "Explore visits", href: "/visit" },
-						{ label: "Parent information", href: "/parents" },
-						{ label: "News", href: "/news" },
-						{ label: "Enquiries", href: "/contact" },
+						{ label: "Arrange a Visit", href: "/visit" },
+						{ label: "Parents", href: "/parents" },
+						{ label: "School News", href: "/news" },
+						{ label: "Contact Us", href: "/contact" },
 					].map((item) => (
 						<Link
 							key={item.href}
@@ -204,20 +205,20 @@ export function Header() {
 				</div>
 				<label className="search-field">
 					<Icon name="search" />
-					<span className="sr-only">Search pages and stories</span>
+					<span className="sr-only">Search the website</span>
 					<input
 						ref={searchInput}
 						type="search"
 						value={query}
 						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Try admissions, subjects or term dates"
+						placeholder="Search admissions, subjects or term dates"
 					/>
 				</label>
 				<div className="search-status">
 					<p className="small-copy" role="status">
 						{query.trim()
 							? `${results.length} ${results.length === 1 ? "result" : "results"}`
-							: "Browse pages"}
+							: "Browse Pages"}
 					</p>
 					{query && (
 						<button
@@ -228,14 +229,14 @@ export function Header() {
 								searchInput.current?.focus();
 							}}
 						>
-							Clear search
+							Clear Search
 						</button>
 					)}
 				</div>
 				{!results.length && (
 					<div className="search-empty">
-						<h3>No matching pages</h3>
-						<p>Try another word or browse the pages below.</p>
+						<h3>No matching pages found.</h3>
+						<p>Try another search or browse the pages below.</p>
 					</div>
 				)}
 				<div className="search-results">

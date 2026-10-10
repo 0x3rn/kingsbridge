@@ -1,34 +1,27 @@
-# Copy and design revision
+# School copy and design revision
 
-10 October 2026 · Guide version 2
+10 October 2026 · Prospectus version 3
 
-The revision applies the supplied replacement copy across all 18 content pages. It retains the forest green, cream, muted gold, crest and local serif/sans-serif fonts, with different layouts for overviews, decision guides, forms/reference pages and reading/print content.
+All 18 content pages now speak in the voice of a Nigerian secondary school. Navigation, headings, calls to action, subject descriptions, FAQs, news and form labels follow the supplied revision. The forest-green and cream identity, crest, serif headings, image-led overviews and compact task/reference layouts are retained.
 
-School type, year groups and imagined location are explicit near the opening. Demo status precedes forms and article bodies. Admission requirements, school costs, school-day times and example term dates have direct section links. Closing actions are contextual, with one primary action and one secondary link; forms and privacy have no promotional closing banner. Existing article URLs are retained.
+One discreet notice above the header explains that Kingsbridge is a fictional portfolio preview. The welfare page separates school-facing guidance from fuller website information about forms, downloads, subscriptions, images and hosting. Image captions identify activities; repeated concept labels and developer instructions have been removed from ordinary school content. The prospectus uses a conventional six-section structure with a small preview statement on its final printed page.
+
+Admission enquiries, visit requests and contact enquiries still use browser memory and local text downloads. Their final actions save a summary, and their completion messages explicitly say the preview has not sent anything or booked an appointment. No subscription is created. Required/optional labels, field errors, editing, Back navigation and clearing on refresh are retained. The former demo acknowledgment is removed to match the revised review screens.
 
 ## Verification
 
-- `npm run lint`, `npm run typecheck` and a clean `npm run build` pass.
-- The Cloudflare preview route check reaches all 18 pages and validates 185 anchors, linked assets, the six-event example calendar and HTTP 404 handling.
-- Chromium checks cover desktop and 360px/390px mobile layouts, navigation, search singular/plural wording, section results, curriculum/news filters and empty states.
-- Keyboard checks cover native dialog focus containment, Escape dismissal, return focus, and the gallery's radio-button arrow-key selection.
-- All three form modes validate invented details, preserve values when editing, require the demo acknowledgment, download a local text summary and clear on refresh. No application, visit booking or enquiry message is sent.
-- Automated axe checks report no WCAG A/AA violations across the 18 pages. These checks are not a formal accessibility certification or a substitute for screen-reader and real-device review.
-- Enlarged-text checks cover the admissions form, parent information and privacy. The term table scrolls within its labelled keyboard-focusable region.
-- Body, supporting, gold-label and footer text contrast ratios are approximately 11.6:1, 6.1:1, 5.4:1 and 9.8:1 respectively. Form/filter boundary contrast is approximately 3.8:1 against white. Image text uses dark overlays and was reviewed visually.
-- The guide prints to five A4 pages with contents, a version/date, page numbers, illustrative labels and readable text. The web action uses the browser print dialog; no pre-generated PDF download is promised.
-- Open Graph metadata uses the public origin and an absolute image URL. The public campus image returns HTTP 200.
+- Production build, lint, type checks and indexing/redirect tests pass.
+- All 18 pages, 237 section links, linked assets, the six-event calendar and HTTP 404 handling pass the local Cloudflare Worker route check.
+- Chromium checks cover all 18 pages at 360px, 390px and 1440px widths with no page overflow, plus the supplied page titles and copy/disclosure placement.
+- Automated axe checks report no WCAG A/AA violations across all 18 pages at 360px. This is not a formal accessibility certification or a substitute for screen-reader and real-device testing.
+- Menu/search/gallery keyboard checks cover Escape dismissal, return focus and native radio selection. Search singular/plural results, section targets, empty results, curriculum/news filtering and resets pass.
+- All three enquiry flows validate, preserve edits, save/download local summaries and clear on refresh. Entered details stay out of network requests, including native submissions with JavaScript disabled.
+- Enlarged-text checks pass for the enquiry form, parent information and welfare/website information. The term table remains keyboard-scrollable.
+- The revised prospectus prints to three A4 pages with contents, version/date and page numbers. The cover, section flow and final-page disclosure were inspected. The action opens the browser print dialogue.
+- Canonical metadata, the 18-page sitemap, robots information, public social image URL, HTTPS/HTML-alias redirects and client navigation are retained.
 
-## Parent validation exercise
+## Information needed for a client version
 
-Human participant testing remains to be carried out. Give parents these tasks without explaining the site first:
+No school address, telephone, email, office hours, principal, founding date, staff profile, fee amount, admission deadline, examination approval or approved welfare policy has been invented. Verified details must be supplied and approved before client publication. The contact and prospectus pages omit unavailable address/telephone/email fields; the welfare page omits an unverified reporting contact or policy link. School transport is omitted until its provision and arrangements are confirmed. The retained term dates and school hours belong to this disclosed presentation and must be replaced with the intended school's approved information.
 
-1. Identify the year groups.
-2. Find JSS1 entry requirements.
-3. Find school-day times.
-4. Find term dates.
-5. Explain what the application form does.
-
-Observe hesitation and ask what they expect each main button to do. Success means they find the information and understand that the school, dates and forms are fictional demonstrations.
-
-Actual school offerings, fees, accreditation, staff, contact routes and operating arrangements still require verified source material before this project could represent a real school.
+Human parent usability testing remains to be carried out: ask parents to identify the classes, find JSS1 requirements, school hours and term dates, and explain what the preview form does.

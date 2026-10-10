@@ -8,82 +8,96 @@ import {
 } from "@/components/page-sections";
 export const metadata: Metadata = {
 	alternates: { canonical: "/about" },
-	title: "About Kingsbridge",
+	title: "About Us",
 	description:
-		"The purpose, learning approach and student support of a fictional co-educational day school in Lagos.",
+		"Our approach to academic progress, character and personal guidance at Kingsbridge College, Lagos.",
 };
 export default function About() {
 	return (
 		<main id="main">
 			<PageOpening
 				title="About Kingsbridge College"
-				label="About Kingsbridge"
+				label="About Us"
 				image="campus"
-				intro="Kingsbridge is imagined as a co-educational day school in Lagos, offering a six-year journey through junior and senior secondary education. The school concept combines academic learning, personal support and opportunities to contribute to a wider community."
+				intro="Kingsbridge College is a co-educational day secondary school in Lagos. We provide Junior and Senior Secondary education with an emphasis on academic progress, sound character and the individual development of our students."
 			/>
 			<div className="container">
 				<SchoolFacts />
 			</div>
-			<Section title="What the school aims to give every student">
+			<Section title="Academic progress with personal guidance.">
 				<div className="prose reading-width">
 					<p>
-						Students need subject knowledge, habits for independent work and
-						people who notice when they need help. The Kingsbridge model brings
-						these together through clear lessons, useful feedback, regular tutor
-						contact and communication with families.
+						We believe a good secondary education should give students both
+						knowledge and the habits needed to use it well. Our teaching
+						encourages understanding, careful work and steady improvement.
 					</p>
 					<p>
-						The junior years introduce a broad range of subjects. The senior
-						years help students make informed choices, prepare for examinations
-						and consider further education or vocational routes.
+						Students receive regular feedback on their work, while class
+						teachers and subject teachers help them develop organisation,
+						confidence and responsibility. We maintain communication with
+						parents so that concerns can be addressed early.
 					</p>
 				</div>
 			</Section>
-			<Section title="Our values in everyday school life" soft>
+			<Section
+				title="What we work towards."
+				intro="Our aim is to prepare students to succeed academically, conduct themselves responsibly and make informed decisions about further education and life after secondary school."
+				soft
+			/>
+			<Section title="Our Values">
 				<Cards
 					items={[
 						{
 							title: "Curiosity",
-							text: "Students ask questions, investigate problems and explain the evidence behind an answer. Practical science, reading and discussion give them opportunities to practise.",
+							text: "We encourage students to ask questions, examine evidence and develop an interest in learning.",
 						},
 						{
 							title: "Character",
-							text: "Respect, honesty and responsibility guide how students work and treat others. Team activities and community projects give these values a practical role.",
+							text: "We promote honesty, respect, self-discipline and responsibility.",
 						},
 						{
 							title: "Possibility",
-							text: "Students explore interests and learn to recognise their strengths. Subject guidance and varied activities help them consider more than one route forward.",
+							text: "We help students develop their abilities, explore their interests and consider the opportunities ahead of them.",
 						},
 					]}
 				/>
 			</Section>
-			<Section id="support" title="Clear expectations. Help when it is needed.">
-				<p className="reading-width">
-					Teachers explain what students are working towards and give feedback
-					they can use. Tutors provide a familiar point of contact for routines,
-					wellbeing and questions that cross several subjects. Reports and
-					family conversations connect progress at school with support at home.
-				</p>
+			<Section
+				id="support"
+				title="Clear expectations. Consistent support."
+				soft
+			>
+				<div className="prose reading-width">
+					<p>
+						Our teachers set clear learning goals and help students understand
+						how to improve. Class teachers monitor everyday progress and provide
+						guidance on routines, behaviour and wellbeing.
+					</p>
+					<p>
+						Parents receive updates on their child’s progress and are encouraged
+						to discuss concerns with the relevant teacher.
+					</p>
+				</div>
 			</Section>
-			<Section title="Students, teachers and families working together" soft>
+			<Section title="Working together for every student.">
 				<Cards
 					items={[
 						{
 							title: "Teachers",
-							text: "Explain learning, check understanding and help students improve.",
+							text: "Our teachers guide learning, assess progress and provide support where it is needed.",
 						},
 						{
-							title: "Families",
-							text: "Share useful information, support routines and discuss progress.",
+							title: "Parents and guardians",
+							text: "Parents support regular attendance, good study routines and communication with the school.",
 						},
 						{
 							title: "Students",
-							text: "Take part, ask for help and respect the people around them.",
+							text: "Our students are expected to participate actively, complete their work and treat others with respect.",
 						},
 					]}
 				/>
 			</Section>
-			<NextAction context="joining" />
+			<NextAction context="about" />
 		</main>
 	);
 }

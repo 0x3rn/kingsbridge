@@ -3,23 +3,19 @@ import { EnquiryForm } from "@/components/enquiry-form";
 import { PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
 	alternates: { canonical: "/apply" },
-	title: "Admissions form demo",
+	title: "Admission Enquiry",
 	description:
-		"Try a browser-only three-step admissions form. No application is sent or place reserved.",
+		"Tell us about your child and the class you are interested in at Kingsbridge College.",
 };
 export default function Apply() {
 	return (
 		<main id="main" className="task-page">
 			<PageOpening
 				compact
-				title="Try the admissions enquiry form"
-				label="Admissions form demo"
-				intro="Use invented details to explore a three-step form and review a local summary. Nothing is sent to a school and no place is reserved."
-			>
-				<p className="preparation-note">
-					About three minutes. No documents or payments required.
-				</p>
-			</PageOpening>
+				title="Admission Enquiry"
+				label="Admissions"
+				intro="Tell us about your child and the class you are interested in."
+			/>
 			<div className="container task-form">
 				<EnquiryForm mode="application" />
 			</div>

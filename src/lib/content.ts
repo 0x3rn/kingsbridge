@@ -1,6 +1,6 @@
 export const navigation = [
 	{
-		label: "About Kingsbridge",
+		label: "About Us",
 		href: "/about",
 	},
 	{
@@ -8,7 +8,7 @@ export const navigation = [
 		href: "/academics",
 	},
 	{
-		label: "School life",
+		label: "School Life",
 		href: "/school-life",
 	},
 	{
@@ -19,94 +19,101 @@ export const navigation = [
 
 export const searchPages = [
 	{
-		title: "About Kingsbridge",
+		title: "About Us",
 		href: "/about",
-		description:
-			"The fictional school model, purpose, values and student support.",
+		description: "Our approach, values and student support.",
 	},
 	{
 		title: "Academics",
 		href: "/academics",
-		description: "Curriculum, subject areas, teaching and assessment.",
+		description: "Our curriculum, subjects, teaching and assessment.",
 	},
 	{
-		title: "Junior secondary",
+		title: "Junior Secondary",
 		href: "/academics/junior-secondary",
-		description: "JSS1–JSS3: subjects, routines and the first weeks.",
+		description: "JSS1–JSS3: subjects, orientation and study habits.",
 	},
 	{
-		title: "Senior secondary",
+		title: "Senior Secondary",
 		href: "/academics/senior-secondary",
 		description: "SS1–SS3: subject choices and examination preparation.",
 	},
 	{
-		title: "School life",
+		title: "School Life",
 		href: "/school-life",
-		description:
-			"Activities, student support, houses and an example school day.",
+		description: "Sports, clubs and societies, student support and school day.",
 	},
 	{
 		title: "Admissions",
 		href: "/admissions",
-		description: "The illustrative joining process and questions.",
+		description: "Our admission process and frequently asked questions.",
 	},
 	{
-		title: "Entry requirements",
+		title: "Admission Requirements",
 		href: "/admissions#requirements",
-		description: "JSS1, SS1 and transfer requirements in the school model.",
+		description: "Entry into JSS1, SS1 and eligible transfer classes.",
 	},
 	{
-		title: "Fees information",
+		title: "School Fees",
 		href: "/admissions#fees",
-		description:
-			"No live fee schedule or payments. Example school cost categories.",
+		description: "Contact admissions for the current fee schedule.",
 	},
 	{
-		title: "Try the admissions form",
+		title: "Admission Enquiry",
 		href: "/apply",
-		description: "Browser-only admissions demo. No application is sent.",
+		description: "Tell us about your child and the proposed class.",
 	},
 	{
-		title: "Explore visits",
+		title: "School Visits",
 		href: "/visit",
-		description: "Campus gallery and a demo visit planner. No booking is made.",
+		description: "Arrange a visit and view our campus gallery.",
 	},
 	{
-		title: "Parent information",
+		title: "Parents’ Information",
 		href: "/parents",
-		description: "Uniform, meals, transport and communication.",
-	},
-	{
-		title: "Term dates",
-		href: "/parents#calendar",
-		description: "Example calendar for 2026–2027, not real school dates.",
-	},
-	{
-		title: "School-day times",
-		href: "/parents#arrival",
 		description:
-			"Arrival 07:45, collection 15:30, selected clubs until 16:30. Example timings.",
+			"Uniform, materials, meals, attendance and parent–teacher communication.",
 	},
 	{
-		title: "News",
+		title: "Term Dates",
+		href: "/parents#calendar",
+		description: "Term calendar for the 2026/2027 academic session.",
+	},
+	{
+		title: "School Hours",
+		href: "/parents#hours",
+		description:
+			"Arrival 07:45, closing 15:30, selected supervised activities until 16:30.",
+	},
+	{
+		title: "School News",
 		href: "/news",
 		description:
-			"Illustrative stories about learning, activities and subject choices.",
+			"Updates on academics, school life, sports and student guidance.",
 	},
 	{
-		title: "Enquiry demo",
+		title: "Contact Us",
 		href: "/contact",
-		description: "Create a local summary. No message is sent or reply issued.",
+		description:
+			"Enquiries about admissions, school fees, school visits and general information.",
 	},
 	{
-		title: "School guide",
+		title: "School Prospectus",
 		href: "/prospectus",
-		description: "A printable guide to the fictional school.",
+		description:
+			"Our academic programme, school life and admission information.",
 	},
 	{
-		title: "Privacy and demo information",
+		title: "Student Welfare",
 		href: "/policies",
-		description: "Browser-only forms, hosting and safeguarding principles.",
+		description:
+			"Student support, respectful conduct and working with parents.",
+	},
+	{
+		title: "Website Information",
+		href: "/policies#project",
+		description:
+			"Portfolio preview information, forms, downloads, images and privacy.",
 	},
 ];
 
@@ -114,279 +121,280 @@ export const values = [
 	{
 		number: "01",
 		title: "Curiosity",
-		text: "Ask questions, investigate ideas and explain the evidence behind an answer.",
+		text: "We encourage students to ask questions, investigate ideas and seek a clear understanding of what they learn.",
 	},
 	{
 		number: "02",
 		title: "Character",
-		text: "Treat others with respect, take responsibility and contribute to the community.",
+		text: "We expect honesty, respect, self-discipline and responsibility in the classroom and throughout school life.",
 	},
 	{
 		number: "03",
 		title: "Possibility",
-		text: "Explore interests, recognise strengths and consider different routes forward.",
+		text: "We help students recognise their strengths, develop their interests and make informed decisions about their future.",
 	},
 ];
 
 export const subjects = [
 	{
-		name: "English & Literature",
+		name: "English and Literature",
 		group: "Languages",
 		stage: "Both",
 		detail:
-			"Read closely, write clearly and explain ideas through discussion, presentation and debate.",
+			"Developing reading comprehension, clear writing, spoken communication and an appreciation of literature.",
 	},
 	{
 		name: "Mathematics",
-		group: "STEM",
+		group: "Science and Technology",
 		stage: "Both",
 		detail:
-			"Develop skills in number, algebra, geometry and statistics, and explain how a solution works.",
+			"Building skills in number, algebra, geometry, statistics and problem-solving.",
 	},
 	{
-		name: "Basic Science & Technology",
-		group: "STEM",
+		name: "Basic Science and Technology",
+		group: "Science and Technology",
 		stage: "Junior",
 		detail:
-			"Investigate scientific ideas and explore how technology applies them to everyday problems.",
+			"Introducing scientific ideas and practical applications through observation, investigation and hands-on learning.",
 	},
 	{
-		name: "Biology, Chemistry & Physics",
-		group: "STEM",
+		name: "Biology, Chemistry and Physics",
+		group: "Science and Technology",
 		stage: "Senior",
 		detail:
-			"Study the specialist sciences through observation, evidence, data and practical work.",
+			"Developing knowledge of the sciences through classroom study, practical work and analysis.",
 	},
 	{
-		name: "Computing & Digital Literacy",
-		group: "STEM",
+		name: "Computing and Digital Literacy",
+		group: "Science and Technology",
 		stage: "Both",
 		detail:
-			"Use digital tools responsibly, evaluate information and explore programming through projects.",
+			"Building confidence with digital tools, information skills, responsible technology use and programming.",
 	},
 	{
-		name: "History, Geography & Social Studies",
-		group: "Humanities",
+		name: "History, Geography and Social Studies",
+		group: "Humanities and Social Sciences",
 		stage: "Both",
 		detail:
-			"Study people and places using sources, maps, research and discussion.",
+			"Understanding people, places and society through research, maps, discussion and the study of sources.",
 	},
 	{
-		name: "Civic Education & Government",
-		group: "Humanities",
+		name: "Civic Education and Government",
+		group: "Humanities and Social Sciences",
 		stage: "Both",
 		detail:
-			"Explore rights, responsibilities, public institutions and participation in community life.",
+			"Learning about citizenship, responsibility, public institutions and participation in society.",
 	},
 	{
-		name: "Economics & Business Studies",
-		group: "Humanities",
+		name: "Economics and Business Studies",
+		group: "Humanities and Social Sciences",
 		stage: "Both",
 		detail:
-			"Examine resources, organisations and decisions, from junior business foundations to senior study.",
+			"Understanding resources, enterprise, organisations and economic decisions.",
 	},
 	{
-		name: "French & Nigerian Languages",
+		name: "French and Nigerian Languages",
 		group: "Languages",
 		stage: "Both",
 		detail:
-			"Practise listening, speaking, reading and writing while exploring language and culture.",
+			"Developing listening, speaking, reading and writing skills alongside an appreciation of language and culture.",
 	},
 	{
-		name: "Creative Arts & Music",
-		group: "Creative & practical",
-		stage: "Both",
-		detail: "Develop ideas through drawing, making, music and performance.",
-	},
-	{
-		name: "Physical & Health Education",
-		group: "Creative & practical",
+		name: "Creative Arts and Music",
+		group: "Creative and Practical Subjects",
 		stage: "Both",
 		detail:
-			"Build movement skills, fitness, teamwork and an understanding of healthy choices.",
+			"Developing creativity and practical skills through art, music and performance.",
 	},
 	{
-		name: "Agricultural Science & Practical Skills",
-		group: "Creative & practical",
+		name: "Physical and Health Education",
+		group: "Creative and Practical Subjects",
+		stage: "Both",
+		detail: "Promoting fitness, movement skills, teamwork and healthy habits.",
+	},
+	{
+		name: "Agricultural Science and Practical Skills",
+		group: "Creative and Practical Subjects",
 		stage: "Both",
 		detail:
-			"Connect food, environmental learning and hands-on projects with planning and practical skills.",
+			"Connecting classroom learning with agriculture, environmental awareness and practical work.",
 	},
 ];
 
 export const admissionFaqs = [
 	{
-		question: "When should a family apply?",
+		question: "When should we apply?",
 		answer:
-			"The model assumes a September intake, with enquiries beginning two terms ahead. There are no live intake dates or application deadlines for this portfolio school.",
+			"Please contact the admissions office to confirm the admission timetable and availability for your preferred class.",
 	},
 	{
-		question: "What is the usual JSS1 entry age?",
+		question: "What is required for JSS1?",
 		answer:
-			"Around 10–11 at the start of the year in this model, following primary education. Previous learning and readiness also matter.",
+			"Applicants should have completed primary school. Previous school records and an entrance assessment help us consider readiness for Junior Secondary.",
 	},
 	{
-		question: "What does the assessment cover?",
+		question: "What does the entrance assessment cover?",
 		answer:
-			"Junior entry includes age-appropriate English, mathematics and reasoning tasks. Senior entry includes English, mathematics and relevant subject discussions.",
+			"For junior entry, assessment covers English, Mathematics and age-appropriate reasoning. Senior entry includes English, Mathematics and relevant subject discussions.",
 	},
 	{
-		question: "Can students transfer?",
+		question: "Can my child transfer from another school?",
 		answer:
-			"The model considers transfers where space and previous learning fit the proposed class. Final-year entry requires individual review.",
+			"Transfer applications are considered subject to available places, school records and the requirements of the proposed class.",
 	},
 	{
-		question: "How are different learning needs considered?",
+		question: "How should we discuss additional learning needs?",
 		answer:
-			"A real school would discuss existing support and access needs before assessment and consider whether its provision is appropriate. This portfolio form does not collect specialist reports.",
+			"Please raise relevant learning or access needs with the admissions team so that the school can discuss the support required.",
 	},
 	{
-		question: "Is boarding included?",
-		answer: "No. Kingsbridge is imagined as a co-educational day school.",
+		question: "Does Kingsbridge offer boarding?",
+		answer: "Kingsbridge is a day school.",
 	},
 	{
-		question: "Which costs can sit outside tuition?",
+		question: "How can we obtain the fee schedule?",
 		answer:
-			"Uniform, books, meals, transport and optional activities may be separate. This project has no actual prices; a real school would provide an itemised written guide.",
+			"Contact the admissions office for current school fees and any additional charges.",
 	},
 	{
-		question: "Does the form send an application?",
+		question: "Can we visit before applying?",
 		answer:
-			"No. It creates a local demo summary in your browser. It does not contact a school, reserve a place or request payment.",
+			"Parents are welcome to request a school visit and discuss their questions with the admissions team.",
 	},
 ];
 
 export const homeFaqs = [
 	{
-		question: "What year groups does Kingsbridge cover?",
+		question: "Which classes does Kingsbridge offer?",
 		answer:
-			"Kingsbridge is imagined as a co-educational day school covering JSS1–JSS3 and SS1–SS3.",
+			"We offer Junior Secondary classes from JSS1 to JSS3 and Senior Secondary classes from SS1 to SS3.",
 	},
 	{
-		question: "What is the usual JSS1 entry age?",
-		answer:
-			"Around 10–11 at the start of the year in this model, following primary education. Previous learning and readiness also matter.",
+		question: "Is Kingsbridge a day or boarding school?",
+		answer: "Kingsbridge is a co-educational day school.",
 	},
 	{
-		question: "What does the assessment cover?",
+		question: "What is required for admission into JSS1?",
 		answer:
-			"Junior entry includes age-appropriate English, mathematics and reasoning tasks. Senior entry includes English, mathematics and relevant subject discussions.",
+			"Applicants should have completed primary school. Admission considers the applicant’s school records, entrance assessment and readiness for secondary education.",
 	},
 	{
-		question: "Does the form send an application?",
+		question: "Can students transfer from another school?",
 		answer:
-			"No. It creates a local demo summary in your browser. It does not contact a school, reserve a place or request payment.",
+			"Transfer applications are considered subject to available places, previous school records and the requirements of the proposed class.",
 	},
 ];
 
 export const news = [
 	{
 		slug: "small-questions-big-discoveries",
-		category: "Learning",
+		category: "Academics",
 		date: "8 October 2026",
-		title: "What school-garden soil can teach us about science",
+		title: "Junior Students Explore Plant Growth Through Practical Science",
 		excerpt:
-			"An example junior science project explores fair tests, careful observation and explaining results.",
+			"A school-garden investigation helps students practise observation, fair testing and recording results.",
 		image: "science",
-		alt: "AI-generated illustration: students investigating plant specimens in a laboratory.",
+		alt: "Students investigating plant specimens in a science laboratory.",
 		reading: "1 min read",
 		intro:
-			"Why might the same seeds grow differently in two parts of a garden? In this illustrative project, junior students turn that question into a test of water, light or soil conditions.",
+			"Practical science gives our students opportunities to connect classroom learning with questions they can investigate.\n\nIn a study of plant growth, students consider how water, light and soil conditions may affect the development of seeds. Working in groups, they identify a factor to investigate and plan a fair comparison.",
 		sections: [
 			{
-				title: "Ask a testable question",
-				text: "Students list possible explanations and choose one factor to investigate. Each group explains what it will change and what it will keep the same.",
+				title: "Planning the investigation",
+				text: "Students explain what they will change, what they will keep the same and how they will record their observations. This helps them understand the importance of a clear method.",
 			},
 			{
-				title: "Record what happens",
-				text: "Groups label samples, take measurements and record observations. If a result differs from a prediction, they review the method and consider what else might explain it.",
+				title: "Recording results",
+				text: "Groups label their samples, take measurements and keep a record of changes. Where results differ from expectations, students review the method and discuss possible explanations.",
 			},
 			{
-				title: "Use and explain the evidence",
-				text: "Students graph their results, write an explanation and suggest a practical change to the garden. The project connects science with mathematics, writing and collaboration.",
+				title: "Explaining the findings",
+				text: "Students use their records to prepare graphs and written explanations. The activity develops scientific understanding alongside Mathematics, communication and teamwork.",
 			},
 		],
+		closing: "",
 	},
 	{
 		slug: "finding-your-voice",
-		category: "School life",
+		category: "School Life",
 		date: "2 October 2026",
-		title: "Building confidence through debate and public speaking",
+		title: "Developing Confidence Through Debate and Public Speaking",
 		excerpt:
-			"Short speaking activities help students practise presenting ideas, listening carefully and disagreeing respectfully.",
+			"Speaking activities help students express ideas clearly, listen carefully and respond respectfully.",
 		image: "library",
-		alt: "AI-generated illustration: students discussing a book in a library.",
+		alt: "Students reading and discussing a book in the library.",
 		reading: "1 min read",
 		intro:
-			"Public speaking can begin with one sentence or one useful question. This example programme starts with manageable tasks and builds towards more demanding discussions.",
+			"Our debate and public-speaking activities give students opportunities to practise speaking in front of others and supporting an argument with evidence.\n\nStudents begin with short tasks, including introducing a topic, summarising another person’s point and speaking about a familiar subject. Preparation and feedback help them develop confidence gradually.",
 		sections: [
 			{
-				title: "Begin with small contributions",
-				text: "Students introduce a familiar topic, summarise a partner’s point or speak for a minute. Preparation and constructive feedback help them understand what to practise next.",
+				title: "Listening before responding",
+				text: "Students are encouraged to understand an argument before challenging it. They consider the evidence behind a point and learn to respond to ideas without making disagreement personal.",
 			},
 			{
-				title: "Understand before responding",
-				text: "Before challenging an argument, students explain it fairly and identify the evidence behind it. Clear discussion rules keep disagreement focused on ideas.",
-			},
-			{
-				title: "Bring the skill into everyday learning",
-				text: "The same habits support class discussion, project presentations and asking for help. The goal is useful communication, whether or not a student becomes a competitive debater.",
+				title: "Building communication skills",
+				text: "The skills developed through debate also support classroom discussions, presentations and group work. Students learn to organise their thoughts, explain their views and listen to others.",
 			},
 		],
+		closing:
+			"We encourage participation from students with different levels of confidence, allowing them to improve through regular practice.",
 	},
 	{
 		slug: "more-than-the-final-score",
-		category: "Sport",
+		category: "Sports",
 		date: "25 September 2026",
-		title: "Teamwork and progress in school sport",
+		title: "Building Teamwork and Discipline Through School Sport",
 		excerpt:
-			"An example sports programme values participation, personal goals and good sportsmanship alongside competition.",
+			"Sports activities help students develop physical skills, commitment and respect for others.",
 		image: "sports",
-		alt: "AI-generated illustration: students playing basketball outdoors.",
+		alt: "Students playing basketball on the sports court.",
 		reading: "1 min read",
 		intro:
-			"School sport can give students a reason to try an activity, practise a skill and work with others. This illustrative programme makes room for beginners and experienced players.",
+			"School sport is an important part of life at Kingsbridge. It gives students opportunities to stay active, learn new skills and contribute to a team.\n\nStudents are encouraged to participate according to their experience and ability. Beginners work on the foundations, while more experienced players develop their skills and understanding of team play.",
 		sections: [
 			{
-				title: "Start from the student’s experience",
-				text: "Beginners learn the foundations, while more experienced players explore tactics and leadership. A varied programme gives students more than one opportunity to find an activity they enjoy.",
+				title: "Recognising progress",
+				text: "Progress may include a more accurate pass, improved fitness, regular participation or greater confidence during a game. Students learn to set goals and recognise the value of consistent effort.",
 			},
 			{
-				title: "Set a useful goal",
-				text: "A more accurate pass, regular attendance or greater confidence joining a game can all show progress. Feedback focuses on preparation, effort and decisions a student can influence.",
+				title: "Good sportsmanship",
+				text: "We expect students to respect teammates, opponents and officials. Competition should encourage commitment and improvement while maintaining fair play.",
 			},
 			{
-				title: "Contribute to the team",
-				text: "Inter-house activity creates opportunities to organise teams, encourage younger players and recognise good sportsmanship. These habits also support classroom collaboration.",
+				title: "Working together",
+				text: "House activities and team games help students practise cooperation, responsibility and encouragement. These habits contribute to the wider school community.",
 			},
 		],
+		closing: "",
 	},
 	{
 		slug: "a-better-way-to-choose-subjects",
-		category: "Subject guidance",
+		category: "Student Guidance",
 		date: "18 September 2026",
-		title: "How to choose senior secondary subjects",
+		title: "Guidance on Choosing Senior Secondary Subjects",
 		excerpt:
-			"A practical guide to balancing interests, progress, requirements and workload.",
+			"Our students consider their interests, academic progress and future plans when selecting senior subjects.",
 		image: "campus",
-		alt: "AI-generated illustration: students walking along a tree-lined path.",
+		alt: "Students walking along a tree-lined school path.",
 		reading: "1 min read",
 		intro:
-			"Students do not need their whole future planned before choosing senior subjects. They need to understand the options and make a choice they can explain.",
+			"Choosing Senior Secondary subjects is an important decision. At Kingsbridge, students receive guidance to help them understand their options and make informed choices.",
 		sections: [
 			{
-				title: "Understand the work behind the title",
-				text: "Explore sample tasks and speak with subject teachers. Consider whether the work involves numerical problems, interpretation, practical investigation or extended writing, and which activities hold your interest.",
+				title: "Understanding each subject",
+				text: "Students discuss subjects with their teachers and consider the type of work involved. This includes practical activities, calculations, reading, interpretation and extended writing.",
 			},
 			{
-				title: "Check requirements and workload",
-				text: "Consider examination and future-course requirements alongside current progress. Avoid choosing only because friends selected a subject or because of one strong result.",
+				title: "Considering future plans",
+				text: "Subject choices should take account of possible further-study requirements alongside the student’s interests and current performance. Students are encouraged to look beyond the choices made by their friends.",
 			},
 			{
-				title: "Discuss a balanced combination",
-				text: "Bring together the student’s interests, family observations and teacher feedback. Use the conversation to identify a suitable combination and any support needed.",
+				title: "Discussing a suitable combination",
+				text: "Teachers, students and parents review academic progress and consider a manageable combination of subjects. The discussion also identifies areas where additional support may be needed.",
 			},
 		],
+		closing:
+			"Our aim is for students to understand their choices and approach Senior Secondary with a clear sense of direction.",
 	},
 ];
 
@@ -415,7 +423,7 @@ export const dailySchedule = [
 	{
 		time: "07:45",
 		title: "Arrival and registration",
-		text: "Prepare for the day and check in with a tutor.",
+		text: "Prepare for the day and check in with the class teacher.",
 	},
 	{
 		time: "08:15",
@@ -425,7 +433,7 @@ export const dailySchedule = [
 	{
 		time: "10:30",
 		title: "Break",
-		text: "A snack, a pause and time with friends.",
+		text: "A pause and time with friends.",
 	},
 	{
 		time: "12:30",
@@ -434,98 +442,78 @@ export const dailySchedule = [
 	},
 	{
 		time: "14:00",
-		title: "Afternoon learning",
-		text: "Lessons, practical projects or scheduled enrichment.",
+		title: "Afternoon lessons and scheduled activities",
+		text: "Lessons, practical work and school activities.",
 	},
 	{
 		time: "15:30",
-		title: "Collection",
-		text: "The model school day ends; selected supervised clubs continue until 16:30.",
+		title: "Closing and collection",
+		text: "Selected supervised activities continue until 16:30.",
 	},
 ];
 
 export const documents = [
-	"Completed application form.",
-	"Birth certificate or age record.",
-	"Two recent school reports.",
-	"Primary or junior-secondary completion record.",
-	"Recent passport photograph.",
-	"Transfer letter, where applicable.",
-	"Relevant learning-support information.",
-	"Parent or guardian contact details.",
+	"Completed application form",
+	"Birth certificate or age record",
+	"Two recent school reports",
+	"Relevant school-completion records",
+	"Recent passport photograph",
+	"Transfer letter, where applicable",
+	"Parent or guardian contact details",
 ];
 
 export const entryRequirements = [
 	{
-		title: "JSS1 — after primary school",
-		text: "The model expects completed primary education, with entrants usually around 10–11 at the start of the year. Recent reports, English, mathematics and reasoning tasks, and a student conversation help inform placement.",
+		title: "JSS1",
+		text: "Applicants should have completed primary school. Admission considers previous school records, performance in the entrance assessment and readiness for secondary education.",
 	},
 	{
-		title: "SS1 — after junior secondary",
-		text: "The model expects junior secondary completion or equivalent study. School records, English and mathematics assessment and subject discussions inform a suitable programme.",
+		title: "SS1",
+		text: "Applicants should have completed Junior Secondary education or an equivalent programme. School records, assessment and subject discussions help determine a suitable placement.",
 	},
 	{
 		title: "Transfers",
-		text: "JSS2, JSS3 and SS2 transfers depend on space and curriculum compatibility in the model. Final-year entry requires individual review because examination preparation is underway. A transfer letter and recent reports would help assess the transition.",
+		text: "Applications into other eligible classes are considered subject to available places and the student’s previous learning. Recent school reports and a transfer letter may be required.",
 	},
 ];
 
 export const admissionProcess = [
 	{
 		title: "Make an enquiry",
-		text: "Discuss the student’s current class, intended entry point and questions about the school.",
+		text: "Contact the admissions team with your child’s current class and the class you wish to apply for.",
 	},
 	{
-		title: "Explore the school",
-		text: "Visit learning spaces and discuss routines, support and curriculum.",
+		title: "Complete the application",
+		text: "Provide the required information and school records.",
 	},
 	{
-		title: "Apply and complete an assessment",
-		text: "Provide the requested records and take an age-appropriate assessment and student conversation.",
+		title: "Attend the entrance assessment",
+		text: "Applicants complete the assessment appropriate to their proposed class and take part in a discussion with the school.",
 	},
 	{
-		title: "Review an offer and prepare to join",
-		text: "Read written terms, confirm practical arrangements and take part in induction if a place is offered.",
-	},
-];
-
-export const feeCategories = [
-	{
-		title: "Tuition and included provision",
-		text: "State teaching, materials and activities included in tuition.",
-	},
-	{
-		title: "Joining costs",
-		text: "Itemise uniform, books, personal equipment and registration charges.",
-	},
-	{
-		title: "Optional services",
-		text: "Explain whether meals, transport, specialist clubs and visits are included or charged separately.",
-	},
-	{
-		title: "Payment terms",
-		text: "State due dates, deposit and refund terms, and any confirmed support arrangements.",
+		title: "Receive an admission decision",
+		text: "The school communicates the outcome and provides joining information to successful applicants.",
 	},
 ];
 
 export const familyFaqs = [
 	{
-		question: "Who handles a learning concern?",
+		question: "Who should I speak to about my child’s progress?",
 		answer:
-			"Subject questions would start with the teacher. Wider learning or wellbeing concerns would start with the tutor. This fictional site has no live support team.",
+			"Contact the relevant subject teacher for a subject concern, or the class teacher for wider questions about your child’s progress.",
 	},
 	{
 		question: "How can I help with homework?",
 		answer:
-			"Ask the student to explain the task, help with a routine and encourage their own work. Share recurring difficulties with the actual teacher.",
+			"Provide a consistent study routine, encourage organisation and allow your child to complete their own work.",
 	},
 	{
-		question: "What if a student feels unsafe?",
+		question: "How do I report a concern about my child’s wellbeing?",
 		answer:
-			"They should approach a trusted adult at their actual school and use its published reporting process. This website is not a safeguarding contact channel.",
+			"Speak with the class teacher or the appropriate member of the school’s welfare team.",
 	},
 	{
-		question: "Are these real school dates?",
-		answer: "No. Use the calendar published by the school the student attends.",
+		question: "Where can I find term dates?",
+		answer: "The term calendar is available on this page.",
 	},
 ];

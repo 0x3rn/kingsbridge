@@ -9,5 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		...searchPages.map((page) => new URL(page.href, siteURL).pathname),
 		...news.map((article) => `/news/${article.slug}`),
 	]);
-	return [...pages].map((pathname) => ({ url: new URL(pathname, siteURL).href }));
+	return [...pages].map((pathname) => ({
+		url: new URL(pathname, siteURL).href,
+	}));
 }

@@ -51,16 +51,16 @@ export function FAQ({
 	);
 }
 export function SubjectExplorer({
-	initialStage = "All stages",
+	initialStage = "All Levels",
 }: {
 	initialStage?: string;
 }) {
-	const [group, setGroup] = useState("All subject areas");
+	const [group, setGroup] = useState("All Categories");
 	const [stage, setStage] = useState(initialStage);
 	const filtered = subjects.filter(
 		(subject) =>
-			(group === "All subject areas" || subject.group === group) &&
-			(stage === "All stages" ||
+			(group === "All Categories" || subject.group === group) &&
+			(stage === "All Levels" ||
 				subject.stage === stage ||
 				subject.stage === "Both"),
 	);
@@ -68,13 +68,13 @@ export function SubjectExplorer({
 		<>
 			<div className="filter-bar">
 				<fieldset className="filter-buttons">
-					<legend>Subject area</legend>
+					<legend>Subject Category</legend>
 					{[
-						"All subject areas",
-						"STEM",
+						"All Categories",
+						"Science and Technology",
 						"Languages",
-						"Humanities",
-						"Creative & practical",
+						"Humanities and Social Sciences",
+						"Creative and Practical Subjects",
 					].map((item) => (
 						<button
 							type="button"
@@ -88,35 +88,35 @@ export function SubjectExplorer({
 					))}
 				</fieldset>
 				<label className="select-label">
-					<span>School stage</span>
+					<span>School Level</span>
 					<select
 						value={stage}
 						onChange={(event) => setStage(event.target.value)}
 					>
-						<option>All stages</option>
-						<option>Junior</option>
-						<option>Senior</option>
+						<option>All Levels</option>
+						<option value="Junior">Junior Secondary</option>
+						<option value="Senior">Senior Secondary</option>
 					</select>
 				</label>
 			</div>
 			<p className="small-copy results-count" role="status">
-				Showing {filtered.length} subject areas ·{" "}
-				{stage === "All stages" ? "All stages" : `${stage} secondary`} · {group}
+				Showing {filtered.length} learning areas ·{" "}
+				{stage === "All Levels" ? "All Levels" : `${stage} Secondary`} · {group}
 			</p>
 			<button
 				type="button"
 				className="text-button filter-reset"
 				onClick={() => {
-					setGroup("All subject areas");
-					setStage("All stages");
+					setGroup("All Categories");
+					setStage(initialStage);
 				}}
 			>
-				Clear filters
+				Clear Filters
 			</button>
 			{!filtered.length && (
 				<p>
-					No subject areas match these filters. Choose another stage or show all
-					subject areas.
+					No learning areas match your selection. Choose another category or
+					clear the filters.
 				</p>
 			)}
 			<div className="subject-grid">
@@ -126,7 +126,7 @@ export function SubjectExplorer({
 							<span>{subject.group}</span>
 							<Icon
 								name={
-									subject.group === "STEM"
+									subject.group === "Science and Technology"
 										? "sun"
 										: subject.group === "Languages"
 											? "book"
@@ -138,8 +138,8 @@ export function SubjectExplorer({
 						<p>{subject.detail}</p>
 						<span className="subject-stage">
 							{subject.stage === "Both"
-								? "Junior & senior secondary"
-								: `${subject.stage} secondary`}
+								? "Junior and Senior Secondary"
+								: `${subject.stage} Secondary`}
 						</span>
 					</article>
 				))}
@@ -148,11 +148,11 @@ export function SubjectExplorer({
 	);
 }
 export function Journal() {
-	const [category, setCategory] = useState("All news");
+	const [category, setCategory] = useState("All News");
 	const [query, setQuery] = useState("");
 	const filtered = news.filter(
 		(article) =>
-			(category === "All news" || article.category === category) &&
+			(category === "All News" || article.category === category) &&
 			`${article.title} ${article.excerpt}`
 				.toLowerCase()
 				.includes(query.toLowerCase()),
@@ -163,11 +163,11 @@ export function Journal() {
 				<fieldset className="filter-buttons">
 					<legend className="sr-only">Filter stories</legend>
 					{[
-						"All news",
-						"Learning",
-						"School life",
-						"Sport",
-						"Subject guidance",
+						"All News",
+						"Academics",
+						"School Life",
+						"Sports",
+						"Student Guidance",
 					].map((item) => (
 						<button
 							type="button"
@@ -181,11 +181,11 @@ export function Journal() {
 					))}
 				</fieldset>
 				<label className="journal-search">
-					<span className="sr-only">Search news</span>
+					<span className="sr-only">Search News</span>
 					<Icon name="search" />
 					<input
 						type="search"
-						placeholder="Search by activity, topic or title"
+						placeholder="Search by topic or title"
 						value={query}
 						onChange={(event) => setQuery(event.target.value)}
 					/>
@@ -195,11 +195,11 @@ export function Journal() {
 				type="button"
 				className="text-button filter-reset"
 				onClick={() => {
-					setCategory("All news");
+					setCategory("All News");
 					setQuery("");
 				}}
 			>
-				Clear filters
+				Clear Filters
 			</button>
 			<p className="small-copy results-count" role="status">
 				{filtered.length} {filtered.length === 1 ? "story" : "stories"}
@@ -212,17 +212,17 @@ export function Journal() {
 				</div>
 			) : (
 				<div className="empty-state">
-					<h3>No stories match your search</h3>
-					<p>Try a different word or clear your filters to see all news.</p>
+					<h3>No news items found.</h3>
+					<p>Try another search or clear your filters.</p>
 					<button
 						type="button"
 						className="button button-primary"
 						onClick={() => {
-							setCategory("All news");
+							setCategory("All News");
 							setQuery("");
 						}}
 					>
-						Clear filters <Icon />
+						Clear Filters <Icon />
 					</button>
 				</div>
 			)}
@@ -231,31 +231,35 @@ export function Journal() {
 }
 const galleryViews = [
 	{
-		name: "Grounds",
+		name: "School grounds",
 		image: "campus",
-		alt: "AI-generated tree-lined school grounds.",
-		text: "Tree-lined paths, green spaces and shared areas between lessons.",
+		alt: "Tree-lined school grounds.",
+		text: "Walkways, green spaces and shared areas for students throughout the school day.",
 	},
 	{
-		name: "Laboratory",
+		name: "Science laboratory",
 		image: "science",
-		alt: "AI-generated practical science classroom.",
-		text: "An illustrative space for practical science, experiments and group investigations.",
+		alt: "Practical science classroom.",
+		text: "A space for practical science, experiments and group investigations.",
 	},
 	{
 		name: "Library",
 		image: "library",
-		alt: "AI-generated students discussing a book in a library.",
-		text: "A setting for reading, research, quiet study and small-group discussion.",
+		alt: "Students discussing a book in the library.",
+		text: "A setting for reading, research and quiet study.",
 	},
 	{
 		name: "Sports court",
 		image: "sports",
-		alt: "AI-generated students playing basketball outdoors.",
-		text: "An outdoor space for basketball, movement and team activities.",
+		alt: "Students playing basketball outdoors.",
+		text: "An outdoor space for basketball, physical activity and team practice.",
 	},
 ];
-export function CampusTour() {
+export function CampusTour({
+	label = "View Campus Gallery",
+}: {
+	label?: string;
+}) {
 	const [stop, setStop] = useState(0);
 	const dialog = useRef<HTMLDialogElement>(null);
 	const trigger = useRef<HTMLButtonElement>(null);
@@ -274,7 +278,7 @@ export function CampusTour() {
 				<span className="tour-play">
 					<Icon name="diagonal" />
 				</span>
-				<span>View campus gallery</span>
+				<span>{label}</span>
 			</button>
 			<dialog
 				ref={dialog}
@@ -284,11 +288,11 @@ export function CampusTour() {
 				onClose={() => trigger.current?.focus()}
 			>
 				<div className="dialog-top">
-					<h2 id={`gallery-title-${id}`}>Explore the campus concept</h2>
+					<h2 id={`gallery-title-${id}`}>Our Campus</h2>
 					<button
 						type="button"
 						className="icon-button"
-						aria-label="Close campus gallery"
+						aria-label="Close Campus Gallery"
 						onClick={() => dialog.current?.close()}
 					>
 						<Icon name="close" />
@@ -317,10 +321,6 @@ export function CampusTour() {
 					<h3>{active.name}</h3>
 					<p>{active.text}</p>
 				</div>
-				<p className="small-copy">
-					AI-generated images illustrating a fictional school. These are not
-					photographs of an operating campus.
-				</p>
 			</dialog>
 		</>
 	);
@@ -329,20 +329,20 @@ export function Newsletter() {
 	const [message, setMessage] = useState("");
 	return (
 		<details className="newsletter newsletter-demo">
-			<summary>Explore the newsletter demo</summary>
+			<summary>School News and Updates</summary>
 			<div className="newsletter-content">
 				<p>
-					Try the subscription interaction. No email address is saved and no
-					newsletter is sent.
+					Receive updates on school activities, announcements and upcoming
+					events.
 				</p>
 				<form
 					onSubmit={(event) => {
 						event.preventDefault();
-						setMessage("Demo complete. No subscription was created.");
+						setMessage("Preview complete. No subscription has been created.");
 						event.currentTarget.reset();
 					}}
 				>
-					<label htmlFor="newsletter-email">Example email address</label>
+					<label htmlFor="newsletter-email">Email address</label>
 					<div className="newsletter-input">
 						<input
 							id="newsletter-email"
@@ -351,7 +351,7 @@ export function Newsletter() {
 							placeholder="parent@example.com"
 							autoComplete="off"
 						/>
-						<button type="submit">Try subscription</button>
+						<button type="submit">Subscribe</button>
 					</div>
 					{message && (
 						<p className="form-feedback" role="status">
@@ -370,7 +370,7 @@ export function PrintButton() {
 			className="button button-primary"
 			onClick={() => window.print()}
 		>
-			Print or save as PDF <Icon name="download" />
+			Print or Save as PDF <Icon name="download" />
 		</button>
 	);
 }
@@ -392,7 +392,7 @@ export function ShareButton({ title }: { title: string }) {
 					}
 				}}
 			>
-				Copy story link <Icon name="diagonal" />
+				Copy Link <Icon name="diagonal" />
 			</button>
 			{message && (
 				<p className="small-copy" role="status">

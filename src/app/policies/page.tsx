@@ -3,94 +3,99 @@ import Link from "next/link";
 import { JumpLinks, PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
 	alternates: { canonical: "/policies" },
-	title: "Privacy and demo information",
+	title: "Student Welfare and Website Information",
 	description:
-		"What is fictional, how browser-only demo forms work, hosting practices and safeguarding principles.",
+		"Student welfare information and details about this portfolio preview, browser-only forms and hosting.",
 };
 export default function Policies() {
 	return (
 		<main id="main" className="reference-page">
 			<PageOpening
 				compact
-				title="About this demo, privacy and safeguarding"
-				label="Privacy and demo information"
-				intro="Understand what is fictional, how the demo forms work and why this website is not a live school contact or reporting service."
+				title="Student Welfare"
+				label="Welfare and Website Information"
+				intro="The wellbeing of our students is important to their learning and school experience."
 			/>
 			<JumpLinks
 				links={[
-					{ label: "Project", href: "#project" },
-					{ label: "Forms and downloads", href: "#forms" },
-					{ label: "Newsletter", href: "#newsletter" },
-					{ label: "Hosting", href: "#hosting" },
-					{ label: "Safeguarding", href: "#safeguarding" },
-					{ label: "Accessibility", href: "#accessibility" },
+					{ label: "Student Support", href: "#safeguarding" },
+					{ label: "Respectful Conduct", href: "#conduct" },
+					{ label: "Working with Parents", href: "#parents" },
+					{ label: "Website Information", href: "#project" },
 				]}
 			/>
 			<div className="container policy-content prose reading-width">
-				<section id="project">
-					<h2>About the project</h2>
-					<p>
-						Kingsbridge College is an original school website concept, not an
-						operating institution. Curriculum, admissions, routines, stories and
-						dates are illustrative. Campus and school-life images are
-						AI-generated; they do not depict actual Kingsbridge students or
-						teachers.
-					</p>
-				</section>
-				<section id="forms">
-					<h2>Demo forms and downloads</h2>
-					<p>
-						Form details are held temporarily in browser memory. Refreshing
-						clears them. Completing a demo creates a local summary rather than
-						sending an application, booking or message.
-					</p>
-					<p>
-						If a summary is downloaded, the file remains on the visitor’s
-						device.
-					</p>
-					<p>
-						Use invented information and do not enter private student records.
-					</p>
-				</section>
-				<section id="newsletter">
-					<h2>Newsletter</h2>
-					<p>
-						The subscription interaction is a demo. It does not save an email
-						address, create a mailing-list subscription or send messages.
-					</p>
-				</section>
-				<section id="hosting">
-					<h2>Hosting</h2>
-					<p>
-						Hosting providers may process technical requests under their own
-						policies. Browser-only forms describe the website’s features; they
-						do not imply that no technical data is processed by hosting
-						infrastructure.
-					</p>
-				</section>
 				<section id="safeguarding">
-					<h2>Safeguarding principles</h2>
+					<h2>Student Support</h2>
 					<p>
-						The school concept emphasises listening to concerns, respectful
-						relationships, clear supervision routines and appropriate sharing of
-						information.
-					</p>
-					<p>
-						This summary is not an operational safeguarding policy. It has no
-						designated staff or live reporting channel. Concerns about an actual
-						student must use the actual school’s published reporting routes.
+						Students are encouraged to speak with their class teacher or another
+						trusted member of staff when they have a concern.
 					</p>
 				</section>
-				<section id="accessibility">
-					<h2>Accessibility</h2>
+				<section id="conduct">
+					<h2>Respectful Conduct</h2>
+					<p>
+						We expect students to treat others with respect and follow school
+						rules. Concerns about bullying or inappropriate behaviour should be
+						reported to the school.
+					</p>
+				</section>
+				<section id="parents">
+					<h2>Working with Parents</h2>
+					<p>
+						Parents are encouraged to raise concerns promptly so that the
+						relevant staff can discuss the matter and agree appropriate next
+						steps.
+					</p>
+				</section>
+				<section id="project" className="website-information">
+					<h2>About This Portfolio Preview</h2>
+					<p>
+						Kingsbridge College is a fictional school used to demonstrate this
+						website design. The school content, news, dates and campus images
+						have been prepared for the presentation.
+					</p>
+					<p>
+						The welfare section describes the school’s approach for this
+						presentation. It is not an approved child-protection policy or a
+						live reporting route. Concerns about an actual student should be
+						raised through their school’s published procedures.
+					</p>
+					<h3 id="forms">Forms</h3>
+					<p>
+						The forms in this preview hold details temporarily in the browser
+						and create local summaries. They do not send applications or
+						messages, reserve places or book appointments.
+					</p>
+					<h3 id="downloads">Downloads</h3>
+					<p>
+						Downloaded summaries are saved to the visitor’s device. Refreshing
+						the page clears the temporary form details.
+					</p>
+					<p>
+						The term calendar contains presentation dates rather than an
+						approved school calendar.
+					</p>
+					<h3 id="newsletter">Newsletter</h3>
+					<p>
+						The newsletter interaction does not create a subscription or send
+						emails.
+					</p>
+					<h3 id="images">Images</h3>
+					<p>Campus and school-life images are AI-generated illustrations.</p>
+					<h3 id="hosting">Hosting</h3>
+					<p>
+						The hosting provider may process technical request information under
+						its own policies.
+					</p>
+					<h3 id="accessibility">Accessibility</h3>
 					<p>
 						The website includes labelled forms, keyboard navigation, visible
-						focus, meaningful image descriptions and reduced-motion support.
-						These features do not establish formal accessibility compliance.
+						focus and reduced-motion support.
 					</p>
 				</section>
 				<Link className="text-link" href="/">
-					Return to homepage
+					Return to Home
 				</Link>
 			</div>
 		</main>
