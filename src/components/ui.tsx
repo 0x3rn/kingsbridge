@@ -239,41 +239,6 @@ export function PageHero({
 		</section>
 	);
 }
-export function VisitCTA() {
-	return (
-		<section className="visit-cta">
-			<div className="container visit-cta-inner">
-				<div>
-					<Eyebrow light>Come and get a feel for us</Eyebrow>
-					<h2>
-						Your next chapter
-						<br />
-						starts with a conversation.
-					</h2>
-					<p>
-						Walk the campus. Ask the questions that matter.
-						<br className="desktop-only" /> Imagine the possibilities together.
-					</p>
-				</div>
-				<div className="cta-actions">
-					<ButtonLink href="/visit" variant="gold">
-						Plan your visit
-					</ButtonLink>
-					<ButtonLink href="/admissions" variant="light">
-						Explore admissions
-					</ButtonLink>
-					<ButtonLink href="/prospectus" variant="outline" icon="book">
-						Read our prospectus
-					</ButtonLink>
-					<ButtonLink href="/apply" variant="outline">
-						Begin an application
-					</ButtonLink>
-				</div>
-				<Crest className="cta-crest" />
-			</div>
-		</section>
-	);
-}
 export function NewsCard({
 	article,
 }: {
@@ -303,6 +268,7 @@ export function NewsCard({
 					<Icon name="diagonal" />
 				</span>
 			</Link>
+			<p className="story-label">Illustrative portfolio story</p>
 			<div className="news-meta">
 				<span>{article.category}</span>
 				<time>{article.date}</time>

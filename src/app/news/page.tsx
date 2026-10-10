@@ -1,31 +1,27 @@
 import type { Metadata } from "next";
 import { Journal } from "@/components/interactive";
-import { PageHero, VisitCTA } from "@/components/ui";
+import { NextAction, PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
 	alternates: { canonical: "/news" },
-	title: "The Kingsbridge journal",
+	title: "News",
 	description:
-		"Ideas, learning projects and stories from life at Kingsbridge College.",
+		"Illustrative portfolio stories about classroom learning, activities and student choices.",
 };
 export default function News() {
 	return (
-		<main id="main">
-			<PageHero
-				eyebrow="The Kingsbridge journal"
-				title={
-					<>
-						Every day,
-						<br />a new <em>story.</em>
-					</>
-				}
-				description="The questions that become projects. The interests that become passions. The moments that make a school feel like a community."
+		<main id="main" className="reading-page">
+			<PageOpening
+				compact
+				title="News from Kingsbridge"
+				label="News"
+				intro="Example stories about classroom learning, activities and student choices, written for this fictional school concept."
 			/>
 			<section className="section">
 				<div className="container">
 					<Journal />
 				</div>
 			</section>
-			<VisitCTA />
+			<NextAction context="news" />
 		</main>
 	);
 }

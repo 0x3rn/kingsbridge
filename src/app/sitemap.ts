@@ -3,9 +3,11 @@ import { news, searchPages } from "@/lib/content";
 import { siteURL } from "@/lib/site";
 export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
-	return [
+	// Search includes shortcuts to sections; the sitemap lists each page once.
+	const pages = new Set([
 		"/",
-		...searchPages.map((page) => page.href),
+		...searchPages.map((page) => new URL(page.href, siteURL).pathname),
 		...news.map((article) => `/news/${article.slug}`),
-	].map((pathname) => ({ url: new URL(pathname, siteURL).href }));
+	]);
+	return [...pages].map((pathname) => ({ url: new URL(pathname, siteURL).href }));
 }

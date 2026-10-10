@@ -1,6 +1,6 @@
 # Kingsbridge College
 
-An original, responsive portfolio website for a fictional secondary school imagined in Lagos, Nigeria. Built with Next.js App Router, TypeScript, Framer Motion and Tailwind CSS. Forest green, warm ivory, restrained gold, editorial typography and original generated imagery establish the visual direction.
+An original, responsive portfolio website for a fictional secondary school imagined in Lagos, Nigeria. Built with Next.js App Router, TypeScript, Framer Motion and Tailwind CSS. Forest green, warm ivory, restrained gold, serif headings and original generated imagery establish the visual direction. A persistent project notice, direct page copy and browser-only demo labels distinguish the concept from an operating school.
 
 ## Run locally
 
@@ -34,11 +34,11 @@ Biome provides recommended JavaScript, TypeScript, React and Next.js linting. It
 - School life: activities, sport, arts, leadership, wellbeing and a typical school day.
 - Admissions: typical entry requirements, document checklist, assessment, transfers, fees approach and FAQs.
 - Apply, visit and contact: guided enquiry experiences with validation, review, back navigation, completion and downloadable text summaries.
-- Journal: category/search filters, empty-state reset, four complete original articles and sharing controls.
+- News: category/search filters, empty-state reset, four complete original articles and sharing controls.
 - Families: illustrative term dates, calendar download, uniform, transport, attendance and practical FAQs.
 - Prospectus: printable college overview; the browser print dialogue supports saving a PDF.
 - Policies: portfolio privacy information and illustrative safeguarding principles.
-- Custom 404, accessible mobile navigation, site search, four-view campus tour and newsletter demonstration.
+- Custom 404, accessible mobile navigation, site search, four-view campus gallery and newsletter demonstration.
 
 There are 18 content pages, including generated curriculum and article routes. Layouts adapt to desktop, tablet and mobile, with keyboard-operable native dialogs, labelled controls, visible focus, a skip link, semantic landmarks and reduced-motion support.
 

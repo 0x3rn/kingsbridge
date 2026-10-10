@@ -1,16 +1,34 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { navigation, news, searchPages } from "@/lib/content";
 import { Brand, Icon } from "./ui";
 
+export function SiteSearchButton() {
+	return (
+		<button
+			type="button"
+			className="text-button"
+			onClick={() => {
+				const dialog = document.getElementById("site-search");
+				if (dialog instanceof HTMLDialogElement) {
+					dialog.showModal();
+					dialog.querySelector("input")?.focus();
+				}
+			}}
+		>
+			Search the site <Icon name="search" />
+		</button>
+	);
+}
 export function Header() {
 	const pathname = usePathname();
 	const menuRef = useRef<HTMLDialogElement>(null);
 	const searchRef = useRef<HTMLDialogElement>(null);
 	const searchInput = useRef<HTMLInputElement>(null);
+	const menuButton = useRef<HTMLButtonElement>(null);
+	const [menuOpen, setMenuOpen] = useState(false);
 	const [query, setQuery] = useState("");
 	const pages = [
 		...searchPages,
@@ -25,20 +43,31 @@ export function Header() {
 			.toLowerCase()
 			.includes(query.trim().toLowerCase()),
 	);
+	const academicLinks = [
+		{ label: "Academics overview", href: "/academics" },
+		{ label: "Junior secondary", href: "/academics/junior-secondary" },
+		{ label: "Senior secondary", href: "/academics/senior-secondary" },
+	];
 	function openSearch() {
 		searchRef.current?.showModal();
 		searchInput.current?.focus();
 	}
 	return (
 		<>
+			<div className="concept-notice">
+				<div className="container">
+					Fictional school website · Explore the design and demo forms. No
+					applications, bookings or messages are sent.
+				</div>
+			</div>
 			<div className="utility-bar">
 				<div className="container">
-					<span>A place to learn. A life to shape.</span>
+					<span>Junior and senior secondary · Lagos</span>
 					<div>
-						<Link href="/parents">For our families</Link>
-						<Link href="/news">News & stories</Link>
+						<Link href="/parents">Parent information</Link>
+						<Link href="/news">News</Link>
 						<Link href="/contact">
-							Get in touch <Icon name="diagonal" />
+							Enquiries <Icon name="diagonal" />
 						</Link>
 					</div>
 				</div>
@@ -47,45 +76,81 @@ export function Header() {
 				<div className="container header-inner">
 					<Brand />
 					<nav className="desktop-nav" aria-label="Main navigation">
-						{navigation.map((item) => (
-							<Link
-								key={item.href}
-								href={item.href}
-								aria-current={
-									pathname.startsWith(item.href) ? "page" : undefined
-								}
-							>
-								{item.label}
-							</Link>
-						))}
+						{navigation.map((item) =>
+							item.href === "/academics" ? (
+								<details className="academic-menu" key={item.href}>
+									<summary>Academics</summary>
+									<div>
+										{academicLinks.map((link) => (
+											<Link
+												href={link.href}
+												key={link.href}
+												aria-current={
+													pathname === link.href ? "page" : undefined
+												}
+												onClick={(event) =>
+													event.currentTarget
+														.closest("details")
+														?.removeAttribute("open")
+												}
+											>
+												{link.label}
+											</Link>
+										))}
+									</div>
+								</details>
+							) : (
+								<Link
+									key={item.href}
+									href={item.href}
+									aria-current={pathname === item.href ? "page" : undefined}
+								>
+									{item.label}
+								</Link>
+							),
+						)}
 					</nav>
 					<div className="header-actions">
 						<button
 							className="icon-button search-button"
 							type="button"
 							aria-label="Search the website"
+							aria-haspopup="dialog"
+							aria-controls="site-search"
 							onClick={openSearch}
 						>
 							<Icon name="search" />
 						</button>
 						<Link className="button button-primary header-visit" href="/visit">
-							Visit Kingsbridge <Icon name="diagonal" />
+							Explore visits <Icon name="diagonal" />
 						</Link>
 						<button
-							className="icon-button mobile-menu-button"
+							ref={menuButton}
+							className="mobile-menu-button"
 							type="button"
-							aria-label="Open navigation menu"
-							onClick={() => menuRef.current?.showModal()}
+							aria-expanded={menuOpen}
+							aria-controls="mobile-menu"
+							aria-haspopup="dialog"
+							onClick={() => {
+								menuRef.current?.showModal();
+								setMenuOpen(true);
+							}}
 						>
 							<Icon name="menu" />
+							Menu
 						</button>
 					</div>
 				</div>
 			</header>
 			<dialog
 				ref={menuRef}
+				id="mobile-menu"
 				className="mobile-dialog"
 				aria-label="Navigation menu"
+				onClose={() => {
+					setMenuOpen(false);
+					menuButton.current?.focus();
+				}}
 			>
 				<div className="dialog-top">
 					<Brand />
@@ -100,14 +165,18 @@ export function Header() {
 				</div>
 				<nav aria-label="Mobile navigation">
 					{[
-						...navigation,
-						{ label: "News & stories", href: "/news" },
-						{ label: "For our families", href: "/parents" },
-						{ label: "Get in touch", href: "/contact" },
+						navigation[0],
+						...academicLinks,
+						...navigation.slice(2),
+						{ label: "Explore visits", href: "/visit" },
+						{ label: "Parent information", href: "/parents" },
+						{ label: "News", href: "/news" },
+						{ label: "Enquiries", href: "/contact" },
 					].map((item) => (
 						<Link
 							key={item.href}
 							href={item.href}
+							aria-current={pathname === item.href ? "page" : undefined}
 							onClick={() => menuRef.current?.close()}
 						>
 							{item.label}
@@ -115,22 +184,15 @@ export function Header() {
 						</Link>
 					))}
 				</nav>
-				<Link
-					href="/visit"
-					className="button button-primary"
-					onClick={() => menuRef.current?.close()}
-				>
-					Plan your visit <Icon />
-				</Link>
-				<p className="small-copy">Curiosity. Character. Possibility.</p>
 			</dialog>
 			<dialog
 				ref={searchRef}
+				id="site-search"
 				className="search-dialog"
 				aria-labelledby="search-title"
 			>
 				<div className="dialog-top">
-					<h2 id="search-title">What would you like to discover?</h2>
+					<h2 id="search-title">Search Kingsbridge</h2>
 					<button
 						type="button"
 						className="icon-button"
@@ -148,36 +210,48 @@ export function Header() {
 						type="search"
 						value={query}
 						onChange={(event) => setQuery(event.target.value)}
-						placeholder="Try curriculum, admissions or term dates…"
+						placeholder="Try admissions, subjects or term dates"
 					/>
 				</label>
-				<p className="small-copy" role="status">
-					{query ? `${results.length} results` : "Explore Kingsbridge"}
-				</p>
-				<div className="search-results">
-					{results.length ? (
-						results.map((page) => (
-							<Link
-								key={page.href}
-								href={page.href}
-								onClick={() => searchRef.current?.close()}
-							>
-								<div>
-									<strong>{page.title}</strong>
-									<p>{page.description}</p>
-								</div>
-								<Icon />
-							</Link>
-						))
-					) : (
-						<p>
-							No matches yet. Try a different word, or{" "}
-							<Link href="/contact" onClick={() => searchRef.current?.close()}>
-								get in touch
-							</Link>
-							.
-						</p>
+				<div className="search-status">
+					<p className="small-copy" role="status">
+						{query.trim()
+							? `${results.length} ${results.length === 1 ? "result" : "results"}`
+							: "Browse pages"}
+					</p>
+					{query && (
+						<button
+							type="button"
+							className="text-button"
+							onClick={() => {
+								setQuery("");
+								searchInput.current?.focus();
+							}}
+						>
+							Clear search
+						</button>
 					)}
+				</div>
+				{!results.length && (
+					<div className="search-empty">
+						<h3>No matching pages</h3>
+						<p>Try another word or browse the pages below.</p>
+					</div>
+				)}
+				<div className="search-results">
+					{(results.length ? results : searchPages).map((page) => (
+						<Link
+							key={page.href}
+							href={page.href}
+							onClick={() => searchRef.current?.close()}
+						>
+							<div>
+								<strong>{page.title}</strong>
+								<p>{page.description}</p>
+							</div>
+							<Icon />
+						</Link>
+					))}
 				</div>
 			</dialog>
 		</>
