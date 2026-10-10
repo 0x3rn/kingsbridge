@@ -9,6 +9,7 @@ import {
 	Section,
 } from "@/components/page-sections";
 export const metadata: Metadata = {
+	alternates: { canonical: "/visit" },
 	title: "Explore visits",
 	description:
 		"An illustrative campus gallery and browser-only visit planner. No appointment is booked.",

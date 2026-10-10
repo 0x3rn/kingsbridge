@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JumpLinks, PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
+	alternates: { canonical: "/policies" },
 	title: "Privacy and demo information",
 	description:
 		"What is fictional, how browser-only demo forms work, hosting practices and safeguarding principles.",

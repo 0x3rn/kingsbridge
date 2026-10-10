@@ -10,6 +10,7 @@ import {
 	values,
 } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/prospectus" },
 	title: "School guide",
 	description:
 		"A printable guide to the fictional Kingsbridge school model, curriculum, school day and admissions.",

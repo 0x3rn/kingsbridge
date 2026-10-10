@@ -20,7 +20,11 @@ export async function generateMetadata({
 	params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
 	const article = getArticle((await params).slug);
-	return { title: article.title, description: article.excerpt };
+	return {
+		title: article.title,
+		description: article.excerpt,
+		alternates: { canonical: `/news/${article.slug}` },
+	};
 }
 export default async function Article({
 	params,

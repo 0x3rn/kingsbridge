@@ -7,6 +7,7 @@ import {
 	Section,
 } from "@/components/page-sections";
 export const metadata: Metadata = {
+	alternates: { canonical: "/about" },
 	title: "About Kingsbridge",
 	description:
 		"The purpose, learning approach and student support of a fictional co-educational day school in Lagos.",

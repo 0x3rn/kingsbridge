@@ -10,6 +10,7 @@ import {
 } from "@/components/page-sections";
 import { familyFaqs, termDates } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/parents" },
 	title: "Parent information",
 	description:
 		"Fictional term dates, example school-day timings, uniform, meals, transport and family communication.",

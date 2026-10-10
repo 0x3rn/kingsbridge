@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CampusTour, FAQ, Reveal } from "@/components/interactive";
 import {
@@ -15,6 +16,9 @@ import {
 	StageCards,
 } from "@/components/page-sections";
 import { homeFaqs, news } from "@/lib/content";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+
 export default function Home() {
 	return (
 		<main id="main">

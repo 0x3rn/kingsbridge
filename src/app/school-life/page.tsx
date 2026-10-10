@@ -10,6 +10,7 @@ import {
 } from "@/components/page-sections";
 import { dailySchedule } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/school-life" },
 	title: "School life",
 	description:
 		"Activities, personal support, an example school day and an illustrative campus gallery.",

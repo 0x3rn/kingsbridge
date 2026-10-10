@@ -3,6 +3,7 @@ import Link from "next/link";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
+	alternates: { canonical: "/contact" },
 	title: "Enquiry demo",
 	description:
 		"Explore a local enquiry summary. No school inbox is contacted and no reply will be issued.",

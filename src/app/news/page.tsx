@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Journal } from "@/components/interactive";
 import { NextAction, PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
+	alternates: { canonical: "/news" },
 	title: "News",
 	description:
 		"Illustrative portfolio stories about classroom learning, activities and student choices.",

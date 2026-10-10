@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PageOpening } from "@/components/page-sections";
 export const metadata: Metadata = {
+	alternates: { canonical: "/apply" },
 	title: "Admissions form demo",
 	description:
 		"Try a browser-only three-step admissions form. No application is sent or place reserved.",

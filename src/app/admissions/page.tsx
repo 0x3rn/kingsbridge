@@ -16,6 +16,7 @@ import {
 	feeCategories,
 } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/admissions" },
 	title: "Admissions",
 	description:
 		"Model JSS1, SS1 and transfer requirements, assessment, documents and school cost information. No live admissions.",

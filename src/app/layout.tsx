@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { siteURL } from "@/lib/site";
 import "./globals.css";
 
 const sans = localFont({
@@ -18,10 +19,7 @@ const serif = localFont({
 	weight: "400",
 });
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		process.env.NEXT_PUBLIC_SITE_URL ||
-			"https://kingsbridgecollege.corstack.dev",
-	),
+	metadataBase: siteURL,
 	title: {
 		default: "Kingsbridge College | Junior and senior secondary school concept",
 		template: "%s | Kingsbridge College",
@@ -35,11 +33,7 @@ export const metadata: Metadata = {
 		type: "website",
 		images: [
 			{
-				url: new URL(
-					"/images/campus.webp",
-					process.env.NEXT_PUBLIC_SITE_URL ||
-						"https://kingsbridgecollege.corstack.dev",
-				).href,
+				url: new URL("/images/campus.webp", siteURL).href,
 				width: 1659,
 				height: 948,
 				alt: "A glimpse of Kingsbridge College",

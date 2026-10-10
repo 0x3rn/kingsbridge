@@ -10,6 +10,7 @@ import {
 	StageCards,
 } from "@/components/page-sections";
 export const metadata: Metadata = {
+	alternates: { canonical: "/academics" },
 	title: "Academics",
 	description:
 		"Explore the illustrative JSS1–SS3 curriculum, subjects, teaching, assessment and support.",
