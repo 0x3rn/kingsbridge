@@ -12,6 +12,7 @@ import {
 } from "@/components/ui";
 import { values } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/about" },
 	title: "Our college",
 	description:
 		"Get to know the purpose, values and people-first approach behind Kingsbridge College.",

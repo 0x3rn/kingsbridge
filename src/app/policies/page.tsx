@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Eyebrow, PageHero, TextLink } from "@/components/ui";
 export const metadata: Metadata = {
+	alternates: { canonical: "/policies" },
 	title: "Privacy & safeguarding",
 	description:
 		"Information about the fictional Kingsbridge portfolio, browser-only forms and model school safeguarding principles.",

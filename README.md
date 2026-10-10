@@ -60,9 +60,9 @@ Enquiry forms are deliberately browser-only. They use in-memory state, clear on 
 
 ## Deployment
 
-The site exports static HTML, client navigation payloads, JavaScript, CSS, images and fonts to `out/`. Cloudflare Workers Assets serves this directory using `wrangler.jsonc`; no Next.js server or Worker JavaScript entry point is required. All content routes are generated at build time, and unknown routes return the custom 404 page. The existing WebP images are served directly without a runtime image optimizer.
+The site exports static HTML, client navigation payloads, JavaScript, CSS, images and fonts to `out/`. Cloudflare Workers Assets serves this directory using `wrangler.jsonc`; the small Worker entry point redirects HTTP and HTML aliases before serving the exported assets. No Next.js runtime is required. All content routes are generated at build time, and unknown routes return the custom 404 page. The existing WebP images are served directly without a runtime image optimizer.
 
-Set `NEXT_PUBLIC_SITE_URL=https://kingsbridgecollege.corstack.dev` before building so Open Graph metadata uses the public URL. Without it, metadata defaults to `http://localhost:3000`.
+Metadata defaults to `https://kingsbridgecollege.corstack.dev`; `NEXT_PUBLIC_SITE_URL` can override it for another deployment. Every content page has a self canonical. `robots.txt` links to the sitemap, which lists all 18 content pages and uses the existing route and article data.
 
 ```sh
 npm run build
@@ -77,6 +77,8 @@ To publish from an authenticated Cloudflare environment:
 npm run deploy
 ```
 
-In Cloudflare Workers Builds, use `npm run build` as the build command and `npx wrangler deploy` as the deploy command. Select the `working` branch to deploy this fix. Keep the existing custom domain attached to the `kingsbridge` Worker. Deploy the contents of `out/`, not `.next/`; a Node.js `next start` build cannot run directly as a Cloudflare Worker.
+In Cloudflare Workers Builds, use `npm run build` as the build command and `npx wrangler deploy` as the deploy command. Use the repository’s `main` branch for the GitHub-connected production build. Keep the existing custom domain attached to the `kingsbridge` Worker. Deploy the contents of `out/`, not `.next/`; a Node.js `next start` build cannot run directly as a Cloudflare Worker.
 
 For a real school, replace illustrative content and dates with approved information, connect enquiry handling and email delivery, establish retention/consent rules, and review the policy copy before launch.
+
+After building, run `node --test scripts/indexing.test.mjs` to verify the exported metadata, sitemap, canonical redirects, client navigation payloads and 404 responses. Publish the committed changes through the connected GitHub build.

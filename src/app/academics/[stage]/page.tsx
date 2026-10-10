@@ -144,8 +144,13 @@ export async function generateMetadata({
 }: {
 	params: Promise<{ stage: string }>;
 }): Promise<Metadata> {
-	const stage = getStage((await params).stage);
-	return { title: stage.name, description: stage.description };
+	const key = (await params).stage;
+	const stage = getStage(key);
+	return {
+		title: stage.name,
+		description: stage.description,
+		alternates: { canonical: `/academics/${key}` },
+	};
 }
 export default async function Stage({
 	params,

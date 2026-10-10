@@ -12,6 +12,7 @@ import {
 } from "@/components/ui";
 import { termDates } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/parents" },
 	title: "For our families",
 	description:
 		"Practical information for the Kingsbridge community: calendar, uniform, attendance, communication and the school day.",

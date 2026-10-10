@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CampusTour, FAQ, Reveal } from "@/components/interactive";
 import {
@@ -11,6 +12,8 @@ import {
 	VisitCTA,
 } from "@/components/ui";
 import { news, values } from "@/lib/content";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
 	return (

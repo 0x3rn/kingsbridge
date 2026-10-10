@@ -3,6 +3,7 @@ import { PrintButton } from "@/components/interactive";
 import { ButtonLink, Crest, Eyebrow, Photo } from "@/components/ui";
 import { dailySchedule, subjects, values } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/prospectus" },
 	title: "College prospectus",
 	description:
 		"A printable introduction to the learning, life and admissions experience at Kingsbridge College.",

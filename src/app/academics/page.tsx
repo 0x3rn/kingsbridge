@@ -11,6 +11,7 @@ import {
 	VisitCTA,
 } from "@/components/ui";
 export const metadata: Metadata = {
+	alternates: { canonical: "/academics" },
 	title: "Learning at Kingsbridge",
 	description:
 		"Explore a balanced secondary curriculum, subject pathways, practical learning and thoughtful assessment.",

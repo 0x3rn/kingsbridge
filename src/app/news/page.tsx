@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Journal } from "@/components/interactive";
 import { PageHero, VisitCTA } from "@/components/ui";
 export const metadata: Metadata = {
+	alternates: { canonical: "/news" },
 	title: "The Kingsbridge journal",
 	description:
 		"Ideas, learning projects and stories from life at Kingsbridge College.",

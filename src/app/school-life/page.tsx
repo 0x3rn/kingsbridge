@@ -12,6 +12,7 @@ import {
 } from "@/components/ui";
 import { dailySchedule } from "@/lib/content";
 export const metadata: Metadata = {
+	alternates: { canonical: "/school-life" },
 	title: "School life",
 	description:
 		"Find out about clubs, sport, the arts, wellbeing and a typical school day at Kingsbridge.",

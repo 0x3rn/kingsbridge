@@ -8,7 +8,8 @@
     "start": "wrangler dev",
     "lint": "biome lint .",
     "typecheck": "tsc --noEmit",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "test": "npm run build && node --test scripts/indexing.test.mjs"
   },
   "dependencies": {
     "framer-motion": "^14.1.0",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EnquiryForm } from "@/components/enquiry-form";
 import { Eyebrow, Icon, PageHero, TextLink } from "@/components/ui";
 export const metadata: Metadata = {
+	alternates: { canonical: "/apply" },
 	title: "Begin an application",
 	description:
 		"Explore the guided Kingsbridge admissions enquiry and create a local demo summary.",

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Suspense } from "react";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { siteURL } from "@/lib/site";
 import "./globals.css";
 
 const sans = localFont({
@@ -18,9 +19,7 @@ const serif = localFont({
 	weight: "400",
 });
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-	),
+	metadataBase: siteURL,
 	title: {
 		default: "Kingsbridge College | A place to learn. A life to shape.",
 		template: "%s | Kingsbridge College",

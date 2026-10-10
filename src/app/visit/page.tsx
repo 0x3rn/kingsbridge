@@ -9,6 +9,7 @@ import {
 	SectionHeading,
 } from "@/components/ui";
 export const metadata: Metadata = {
+	alternates: { canonical: "/visit" },
 	title: "Visit Kingsbridge",
 	description:
 		"Explore the campus and prepare a personal school visit enquiry.",

@@ -10,6 +10,7 @@ import {
 	VisitCTA,
 } from "@/components/ui";
 export const metadata: Metadata = {
+	alternates: { canonical: "/admissions" },
 	title: "Admissions",
 	description:
 		"A clear guide to Kingsbridge admissions: entry requirements, assessment, documents, school fees and your next steps.",
